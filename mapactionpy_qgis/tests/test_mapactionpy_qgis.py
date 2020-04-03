@@ -1,10 +1,11 @@
 from unittest import TestCase
 
-import mapactionpy_qgis
+# import mapactionpy_qgis
+
 
 class TestQgisRunner(TestCase):
     def test_alway_fail(self):
-        self.assertTrue(false)
-		
+        self.fail()
+
     def test_alway_pass(self):
-        self.assertTrue(true)
+        self.assertTrue(True)
