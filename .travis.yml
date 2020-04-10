@@ -16,7 +16,7 @@ after_success:
 - coveralls
 deploy:
   provider: pypi
-  username: asmith_mapaction
+  username: "__token__"
   password:
     secure: JhboULe8WP6RbZXAOZXSJtGml04qGY52JuY8klzV4SHdBafk2dXk+dTcvN3uRL+z65WvOKjvmIbdD2bxPMYikJCWaoBBiK+t05jEf0mXkJ1nj4YxsE7rO4uC9ngwLoDETP9sPSeSe3EaBk375Pf2IhyLWdTf+eqqx+WVh3lR1MQYbe41R/LK097wZD71Ls5O6+OtW0h8NmUN4KLn1S88XK8er4UPBipRSBKlZzb/Ivejqy+UOMs/u/golAMqn5/7e1DYirT2AjEanbrb7WcHdAUH87izDMwYNEZThLfnWZwEpl298YOVlEOXfh/wyvFwsgmLQq2FcW9afYvS8IzZMWUo5qfCIkT0Ab5Ipnl+qqG01azzpt6GriHXm8o5h7ZBBAilYmmNEl1BOt6hw8MB5/2BxE3hHLu1z+akePk/iEk0ptS+ueSAHepa+MPhmnYhyDZ6CdS5Xn4heIl9nZmTOz4PgzJo6oHv0OtD5szrXAugAXPP/xNXsVRANvJqKtuFArGNZUdn9FuwRSk7nKUkmoOCl0IvxgyIagTRpW7w6i+oGVxNqLu6cVvtpo5NP7uABzeOCPNSBjq5k6k8A+52Xa3incfckoEzuNXO/3HUA+YjkcYUh8vvh6yhBLYhNzJS/SHoVy7co+ehOBc3QTZr48QEVaMO1CV7YqZmcH7J++E=
   distributions: sdist
