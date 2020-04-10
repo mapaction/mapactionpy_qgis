@@ -4,8 +4,6 @@ from unittest import TestCase
 
 
 class TestQgisRunner(TestCase):
-    def test_alway_fail(self):
-        self.fail()
-
+    
     def test_alway_pass(self):
         self.assertTrue(True)
