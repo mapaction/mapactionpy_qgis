@@ -8,3 +8,4 @@
 /*.egg-info
 .coverage
 all-tests.cmd
+htmlcov/
