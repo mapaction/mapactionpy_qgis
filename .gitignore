@@ -9,3 +9,4 @@
 .coverage
 all-tests.cmd
 htmlcov/
+.vscode/

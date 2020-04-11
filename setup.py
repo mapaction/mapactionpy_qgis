@@ -47,6 +47,9 @@ setup(name='mapactionpy_qgis',
       author_email='github@mapaction.com',
       license='GPL3',
       packages=find_packages(),
+      install_requires=[
+          'mapactionpy_controller'
+      ],
       test_suite='unittest',
       tests_require=['unittest'],
       zip_safe=False,
