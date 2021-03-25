@@ -1,8 +1,6 @@
-The MapAction Controller can be installed for QGIS using these instructions. Once this is done, the controller can be used to generate a JSON set of instructions for a map product, including:
+# Overview
 
-* Layer lists and locations
-* Style references
-* Template references
+The plugin works in tandem with the controller to automate data checking and map production. The controller provider, much of the common core, vendor-neutral functionality with no dependencies on individual GIS APIs, whist the plugins, provide vendor-specific use of GIS APIs.
 
 # Interface with the Controller
 
