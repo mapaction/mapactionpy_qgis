@@ -9,7 +9,7 @@ This is a planned plugin for MapChef, which will enable MapChef to produce an au
 
 # Why is it needed?
 
-The [MapChef ArcMap plugin](https://github.com/mapaction/mapactionpy_arcmap) is able to produce a set of base maps, ready for publication or reuse, from a JSON ‘recipe’.
+The [MapChef ArcMap plugin](https://github.com/mapaction/mapactionpy_arcmap) can produce a set of base maps, ready for publication or reuse, from a JSON ‘recipe’.
 
 MapAction has access to [SLYR](https://north-road.com/slyr) (which has been generously donated by [North Road](https://north-road.com)). In theory, one approach would be to convert the output of the ArcMap plugin into QGIS-ready products using SLYR. However, this approach retains a dependency on Arc, which partners may not have, and potentially misses an opportunity to complete development in QGIS which - because a significant part of the [MapChef code is intended to be reusable](https://github.com/mapaction/mapactionpy_controller) - should be reasonably straightforward to do.
 
@@ -22,14 +22,14 @@ MapAction has access to [SLYR](https://north-road.com/slyr) (which has been gene
 
 # Installation
 
-It is necessary to explictly install both the QGIS plugin and the controller (See [bug #7](https://github.com/mapaction/mapactionpy_qgis/issues/7)). You _must_ idenify the relevant python evironment for your QGIS installation. To confirm 
+It is necessary to explicitly install both the QGIS plugin and the controller (See [bug #7](https://github.com/mapaction/mapactionpy_qgis/issues/7)). You _must_ identify the appropriate python environment for your QGIS installation. To confirm 
 
 ```
 # This command must print out the module name `qgis.core` and return without error
 <path/to/your/qgis/python> -c 'import qgis.core; print(qgis.core.__name__)'
 ```
 
-To install the packages these two commands are required:
+These two commands are required to install the packages:
 ```
 python -m pip install mapactionpy_controller
 python -m pip install mapactionpy_qgis
