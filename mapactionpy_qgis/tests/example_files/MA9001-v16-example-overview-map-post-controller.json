@@ -1,0 +1,565 @@
+{
+    "category": "Reference", 
+    "hum_event": {
+        "affected_country_iso3": "bgd", 
+        "default_publishing_base_url": "https://maps.mapaction.org/dataset/", 
+        "default_source_organisation": "MapAction", 
+        "default_jpeg_res_dpi": 300, 
+        "default_source_organisation_url": "https://mapaction.org", 
+        "default_disclaimer_text": "The depiction and use of boundaries, names and associated data shown here do not imply endorsement or acceptance by MapAction.", 
+        "path": "G:\\data\\bangladesh", 
+        "time_zone": "UTC+06:00", 
+        "default_pdf_res_dpi": 300, 
+        "cmf_descriptor_path": "G:\\data\\bangladesh\\cmf_description.json", 
+        "default_donor_credits": "Supported by German Federal Foreign Office", 
+        "operation_id": "2021-bgd-001", 
+        "country_name": "Bangladesh", 
+        "glide_number": "DS-2021-000001-BGD", 
+        "default_emf_res_dpi": 300, 
+        "deployment_primary_email": "info@mapaction.org", 
+        "language_iso2": "en", 
+        "operation_name": "Bangladesh Rolling Data Scramble"
+    }, 
+    "principal_map_frame": "Main map", 
+    "template_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\32_Map_Templates\\arcmap-10.6_reference_portrait_bottom.mxd", 
+    "version_num": 16, 
+    "mapnumber": "MA9001", 
+    "product": "Country Overview with Admin 1 Boundaries and Topography", 
+    "summary": "Country overview with topography displayed", 
+    "map_project_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\33_Map_Projects\\MA9001\\MA9001-v16-country-overview-with-admin-1-boundaries-and-topography.mxd", 
+    "export": true, 
+    "template": "reference", 
+    "map_frames": [
+        {
+            "layers": [
+                {
+                    "crs": "epsg:32646", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\207_carto\\bgd_carto_fea_py_s0_ma_pp_100kfeatherCOD.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "locationmap-carto-fea-py-s0-locationmaps", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\locationmap-carto-fea-py-s0-locationmaps.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_carto_fea_py_s0_ma_pp_100kfeatherCOD", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "42b00328ffe5f520728c3298403d8218", 
+                    "layer_file_checksum": "4660185ae1bcfc0b17cacb4ce435639a", 
+                    "extent": [
+                        -105437.67690000031, 
+                        2176992.158399999, 
+                        566838.2521000002, 
+                        3054171.2279000003
+                    ], 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "reg_exp": "^bgd_carto_fea_py_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\211_elev\\bgd_elev_cst_ln_s0_gadm_pp_coastline.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "locationmap-elev-cst-ln-s0-locationmaps", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\locationmap-elev-cst-ln-s0-locationmaps.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_elev_cst_ln_s0_gadm_pp_coastline", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "66c3109313b5211b2a84604b972063aa", 
+                    "layer_file_checksum": "ccc1f8b5948fb3c2cc56ac199049afa4", 
+                    "extent": [
+                        88.00862798600008, 
+                        20.590609348000033, 
+                        92.68030687500004, 
+                        26.63451301000004
+                    ], 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "reg_exp": "^bgd_elev_cst_ln_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\202_admn\\bgd_admn_ad0_ln_s0_bbs_pp.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "locationmap-admn-ad0-ln-s0-locationmaps", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\locationmap-admn-ad0-ln-s0-locationmaps.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_admn_ad0_ln_s0_bbs_pp", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "f970440dbc396bb41c0bd744f6195789", 
+                    "layer_file_checksum": "9d3e577bf4fa25bce204f1880ccd7ba3", 
+                    "extent": [
+                        88.00862798600008, 
+                        20.590609348000033, 
+                        92.68030687500004, 
+                        26.63451301000004
+                    ], 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "reg_exp": "^bgd_admn_ad0_ln_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\202_admn\\reg_admn_ad0_ln_s0_gadm_pp_surrounding_countries.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "locationmap-admn-ad0-ln-s0-surroundingcountries", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\locationmap-admn-ad0-ln-s0-surroundingcountries.lyr", 
+                    "data_schema": true, 
+                    "data_name": "reg_admn_ad0_ln_s0_gadm_pp_surrounding_countries", 
+                    "definition_query": "\"adm_0\" <> 'Bangladesh'", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "72d3d4eb2027a61dc29b9ddaa970a555", 
+                    "layer_file_checksum": "fc142a5e8c2139d1a1ba0f0673257cec", 
+                    "extent": [
+                        68.1861808970399, 
+                        6.752284901835714, 
+                        101.18084647811946, 
+                        35.50192958926245
+                    ], 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "reg_exp": "^(?!(bgd))(.*?)_admn_ad0_ln_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\202_admn\\bgd_admn_ad1_py_s0_bbs_pp.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "locationmap-admn-ad1-py-s0-locationmaps", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\locationmap-admn-ad1-py-s0-locationmaps.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_admn_ad1_py_s0_bbs_pp", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "ab540c158efb64b300123a12f477917f", 
+                    "layer_file_checksum": "04bb230b8df7a3bbf40e845121af8e0b", 
+                    "extent": [
+                        88.00862798600008, 
+                        20.590609348000044, 
+                        92.68030687500006, 
+                        26.634513010000056
+                    ], 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "use_for_frame_extent": true, 
+                    "reg_exp": "^bgd_admn_ad1_py_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\202_admn\\reg_admn_ad0_py_s0_gadm_pp_surrounding_countries.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "locationmap-admn-ad0-py-s0-surroundingcountries", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\locationmap-admn-ad0-py-s0-surroundingcountries.lyr", 
+                    "data_schema": true, 
+                    "data_name": "reg_admn_ad0_py_s0_gadm_pp_surrounding_countries", 
+                    "definition_query": "\"adm_0\" <> 'Bangladesh'", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "1816de4fe695fdc523a4b62d9fd87971", 
+                    "layer_file_checksum": "c68ac54e92744ad4dbfd43c61d4d6e0e", 
+                    "extent": [
+                        68.18618089703993, 
+                        6.752284901835716, 
+                        101.18084647811946, 
+                        35.50192958926246
+                    ], 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "reg_exp": "^(?!(bgd))(.*?)_admn_ad0_py_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }
+            ], 
+            "crs": "epsg:4326", 
+            "name": "Location map", 
+            "extent": [
+                88.00862798600008, 
+                20.590609348000044, 
+                92.68030687500006, 
+                26.634513010000056
+            ]
+        }, 
+        {
+            "layers": [
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\202_admn\\bgd_admn_ad1_py_s0_bbs_pp.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-admn-ad1-py-s0-scaling", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-admn-ad1-py-s0-scaling.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_admn_ad1_py_s0_bbs_pp", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "ab540c158efb64b300123a12f477917f", 
+                    "layer_file_checksum": "7d9c205cd25fa91c0cd9cd491baf80b1", 
+                    "extent": [
+                        88.00862798600008, 
+                        20.590609348000044, 
+                        92.68030687500006, 
+                        26.634513010000056
+                    ], 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "use_for_frame_extent": true, 
+                    "reg_exp": "^bgd_admn_ad1_py_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\229_stle\\bgd_stle_stl_pt_s1_osm_pp_settlements.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-stle-stl-pt-s0-allmaps", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-stle-stl-pt-s0-allmaps.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_stle_stl_pt_s1_osm_pp_settlements", 
+                    "definition_query": "", 
+                    "label_classes": [
+                        {
+                            "class_name": "National Capital", 
+                            "sql_query": "(\"fclass\" = 'national_capital')", 
+                            "expression": "[name]", 
+                            "show_class_labels": true
+                        }, 
+                        {
+                            "class_name": "Admin 1 Capital", 
+                            "sql_query": "(\"fclass\" = 'town')", 
+                            "expression": "[name]", 
+                            "show_class_labels": true
+                        }
+                    ], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "13439afb868bee6e9eb57e7eac48975a", 
+                    "layer_file_checksum": "ae1c9df2071e46574a2341fe4c0f3b69", 
+                    "extent": [
+                        88.1261873, 
+                        20.5809886, 
+                        92.6256037, 
+                        26.633243
+                    ], 
+                    "add_to_legend": true, 
+                    "display": true, 
+                    "reg_exp": "^bgd_stle_stl_pt_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\232_tran\\bgd_tran_por_pt_s1_worldports_pp.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-tran-por-pt-s0-allmaps", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-tran-por-pt-s0-allmaps.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_tran_por_pt_s1_worldports_pp", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "535998eb6a4994eaa1306060e6c8218c", 
+                    "layer_file_checksum": "5b46d795fd3fad04a9a423c87a32244a", 
+                    "extent": [
+                        84.91666666666667, 
+                        19.25, 
+                        92.9, 
+                        22.55
+                    ], 
+                    "add_to_legend": true, 
+                    "display": true, 
+                    "reg_exp": "^bgd_tran_por_pt_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\232_tran\\bgd_tran_air_pt_s0_ourairports_pp.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-tran-air-pt-s0-allmaps", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-tran-air-pt-s0-allmaps.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_tran_air_pt_s0_ourairports_pp", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "38c5b0b15940be4d391f9c3adbfd2405", 
+                    "layer_file_checksum": "32479de2fb72b6f5c5ff0730f8267491", 
+                    "extent": [
+                        88.4036026, 
+                        21.22472, 
+                        92.46715, 
+                        26.01639938
+                    ], 
+                    "add_to_legend": true, 
+                    "display": true, 
+                    "use_for_frame_extent": false, 
+                    "reg_exp": "^bgd_tran_air_pt_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\211_elev\\bgd_elev_cst_ln_s0_gadm_pp_coastline.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-elev-cst-ln-s0-allmaps", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-elev-cst-ln-s0-allmaps.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_elev_cst_ln_s0_gadm_pp_coastline", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "66c3109313b5211b2a84604b972063aa", 
+                    "layer_file_checksum": "4f0a2641bce4767eb20340d39705daa4", 
+                    "extent": [
+                        88.00862798600008, 
+                        20.590609348000033, 
+                        92.68030687500004, 
+                        26.63451301000004
+                    ], 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "use_for_frame_extent": false, 
+                    "reg_exp": "^bgd_elev_cst_ln_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\202_admn\\bgd_admn_ad1_ln_s0_bbs_pp.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-admn-ad1-ln-s0-reference", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-admn-ad1-ln-s0-reference.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_admn_ad1_ln_s0_bbs_pp", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "e9afc9117860ab8b8bd773b0aa1f52b6", 
+                    "layer_file_checksum": "fe6c7d8c0c35c0bf8059ba00142d5fd2", 
+                    "extent": [
+                        88.00862798600009, 
+                        20.590609348000033, 
+                        92.68030687500006, 
+                        26.63451301000004
+                    ], 
+                    "add_to_legend": true, 
+                    "display": true, 
+                    "reg_exp": "^bgd_admn_ad1_ln_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\221_phys\\bgd_phys_riv_ln_s1_osm_pp_rivers.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-phys-riv-ln-s0-reference", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-phys-riv-ln-s0-reference.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_phys_riv_ln_s1_osm_pp_rivers", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "6b9dad398dcfc2cc222bf8b2f6dc3f4f", 
+                    "layer_file_checksum": "e542cc4d7b6e651d8388685e285c5f37", 
+                    "extent": [
+                        87.9227256, 
+                        20.6293387, 
+                        92.9031365, 
+                        26.7512379
+                    ], 
+                    "add_to_legend": true, 
+                    "display": true, 
+                    "reg_exp": "^bgd_phys_riv_ln_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\221_phys\\bgd_phys_wat_py_s1_osm_pp_waterbodies.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-phys-wat-py-s0-allmaps", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-phys-wat-py-s0-allmaps.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_phys_wat_py_s1_osm_pp_waterbodies", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "30a1265467baa6f772d9953992890a9e", 
+                    "layer_file_checksum": "368897477aee75ce78bb7783d5827600", 
+                    "extent": [
+                        87.92221, 
+                        20.6234323, 
+                        92.5543396, 
+                        26.6451418
+                    ], 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "reg_exp": "^bgd_phys_wat_py_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\211_elev\\bgd_elev_dem_ras_s1_srtm_pp_90m.tif", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-elev-dem-ras-s0-reference", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-elev-dem-ras-s0-reference.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_elev_dem_ras_s1_srtm_pp_90m", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "695eed99c14148101e2c167a11549c3a", 
+                    "layer_file_checksum": "c3fd2671fcf6e917064f418e53eff965", 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "reg_exp": "^bgd_elev_dem_ras_s(u|[0-5])_(.*?)_([phm][phm])(.*?).(tif|img)$"
+                }, 
+                {
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\211_elev\\bgd_elev_hsh_ras_s1_srtm_pp_90m.tif", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-elev-hsh-ras-s0-reference", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-elev-hsh-ras-s0-reference.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_elev_hsh_ras_s1_srtm_pp_90m", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "17201b7c2be265300105a19156890549", 
+                    "layer_file_checksum": "1c5ed45ccd171b939638e59b8914b58c", 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "reg_exp": "^bgd_elev_hsh_ras_s(u|[0-5])_(.*?)_([phm][phm])(.*?).(tif|img)$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\202_admn\\reg_admn_ad0_ln_s0_gadm_pp_surrounding_countries.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-admn-ad0-ln-s0-surroundingcountries", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-admn-ad0-ln-s0-surroundingcountries.lyr", 
+                    "data_schema": true, 
+                    "data_name": "reg_admn_ad0_ln_s0_gadm_pp_surrounding_countries", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "72d3d4eb2027a61dc29b9ddaa970a555", 
+                    "layer_file_checksum": "872bf3ed7f3b6a730858292b4f0b117e", 
+                    "extent": [
+                        68.1861808970399, 
+                        6.752284901835714, 
+                        101.18084647811946, 
+                        35.50192958926245
+                    ], 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "reg_exp": "^(?!(bgd))(.*?)_admn_ad0_ln_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\202_admn\\bgd_admn_ad1_py_s0_bbs_pp.shp", 
+                    "schema_definition": "admin1_reference.yml", 
+                    "name": "mainmap-admn-ad1-py-s0-reference", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-admn-ad1-py-s0-reference.lyr", 
+                    "data_schema": {
+                        "required": [
+                            "admin1Name"
+                        ], 
+                        "properties": {
+                            "geometry_type": {
+                                "items": {
+                                    "enum": [
+                                        "MultiPolygon", 
+                                        "Polygon"
+                                    ]
+                                }, 
+                                "additionalItems": false
+                            }
+                        }
+                    }, 
+                    "data_name": "bgd_admn_ad1_py_s0_bbs_pp", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "ab540c158efb64b300123a12f477917f", 
+                    "layer_file_checksum": "683b78342000812fa7025c8d9fbcf943", 
+                    "extent": [
+                        88.00862798600008, 
+                        20.590609348000044, 
+                        92.68030687500006, 
+                        26.634513010000056
+                    ], 
+                    "add_to_legend": true, 
+                    "display": true, 
+                    "reg_exp": "^bgd_admn_ad1_py_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:32646", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\207_carto\\bgd_carto_fea_py_s0_ma_pp_100kfeatherCOD.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-carto-fea-py-s0-allmaps", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-carto-fea-py-s0-allmaps.lyr", 
+                    "data_schema": true, 
+                    "data_name": "bgd_carto_fea_py_s0_ma_pp_100kfeatherCOD", 
+                    "definition_query": "", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "42b00328ffe5f520728c3298403d8218", 
+                    "layer_file_checksum": "e27a2f0cea159430475952a4b10a000d", 
+                    "extent": [
+                        -105437.67690000031, 
+                        2176992.158399999, 
+                        566838.2521000002, 
+                        3054171.2279000003
+                    ], 
+                    "add_to_legend": false, 
+                    "display": true, 
+                    "use_for_frame_extent": false, 
+                    "reg_exp": "^bgd_carto_fea_py_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }, 
+                {
+                    "crs": "epsg:4326", 
+                    "data_source_path": "G:\\data\\bangladesh\\GIS/2_Active_Data\\202_admn\\reg_admn_ad0_py_s0_gadm_pp_surrounding_countries.shp", 
+                    "schema_definition": "null-schema.yml", 
+                    "name": "mainmap-admn-ad0-py-s0-surroundingcountries", 
+                    "layer_file_path": "G:\\data\\bangladesh\\GIS\\3_Mapping\\31_Resources\\312_Layer_files\\mainmap-admn-ad0-py-s0-surroundingcountries.lyr", 
+                    "data_schema": true, 
+                    "data_name": "reg_admn_ad0_py_s0_gadm_pp_surrounding_countries", 
+                    "definition_query": "\"adm_0\" <> 'Bangladesh'", 
+                    "label_classes": [], 
+                    "error_messages": [], 
+                    "visible": true, 
+                    "data_source_checksum": "1816de4fe695fdc523a4b62d9fd87971", 
+                    "layer_file_checksum": "d10f12db6572a9716440d49dd278159c", 
+                    "extent": [
+                        68.18618089703993, 
+                        6.752284901835716, 
+                        101.18084647811946, 
+                        35.50192958926246
+                    ], 
+                    "add_to_legend": false, 
+                    "display": false, 
+                    "reg_exp": "^(?!(bgd))(.*?)_admn_ad0_py_s(u|[0-5])_(.*?)_([phm][phm])(.*?).shp$"
+                }
+            ], 
+            "crs": "epsg:4326", 
+            "name": "Main map", 
+            "scale_text_element": "scale", 
+            "spatial_ref_text_element": "spatial_reference", 
+            "extent": [
+                88.00862798600008, 
+                20.590609348000044, 
+                92.68030687500006, 
+                26.634513010000056
+            ]
+        }
+    ], 
+    "runners": [
+        {
+            "example_key": "example_value", 
+            "name": "arcmap"
+        }
+    ]
+}
