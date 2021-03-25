@@ -7,7 +7,7 @@ _root_dir = path.abspath(path.dirname(__file__))
 
 
 def readme():
-    with open(path.join(_root_dir, 'README.rst')) as f:
+    with open(path.join(_root_dir, 'README.md')) as f:
         return f.read()
 
 
@@ -41,7 +41,7 @@ setup(name='mapactionpy_qgis',
       version=_get_version_number(),
       description='Used to drive QGIS',
       long_description=readme(),
-      long_description_content_type="text/x-rst",
+      long_description_content_type="text/markdown",
       url='http://github.com/mapaction/mapactionpy_qgis',
       author='MapAction',
       author_email='github@mapaction.com',
