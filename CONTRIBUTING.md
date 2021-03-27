@@ -1,6 +1,6 @@
 # Overview
 
-The plugin works in tandem with the controller to automate data checking and map production. The controller provider, much of the common core, vendor-neutral functionality with no dependencies on individual GIS APIs, whist the plugins, provide vendor-specific use of GIS APIs.
+The plugin works in tandem with the controller to automate data checking and map production. The controller provides much of the common core, vendor-neutral functionality with no dependencies on individual GIS APIs, whist the plugins, provide vendor-specific use of GIS APIs.
 
 # Interface with the Controller
 
