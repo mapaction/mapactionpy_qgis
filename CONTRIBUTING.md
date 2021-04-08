@@ -11,7 +11,7 @@ https://github.com/mapaction/mapactionpy_controller/blob/master/mapactionpy_cont
 
 The critical method is `build_project_files`. The controller will pass a parameter kwargs['state'] which is a MapRecipe object. At this point, the object resembles this [example JSON representation](mapactionpy_qgis/tests/example_files/MA9001-v16-example-overview-map-post-controller.json). The method should perform most of the functions delegated to the plugin.
 
-The de-facto reference implenmentation is the [`mapactionpy_arcmap`](https://github.com/mapaction/mapactionpy_controller) module.
+The de-facto reference implenmentation is the [`mapactionpy_arcmap`](https://github.com/mapaction/mapactionpy_arcmap) module.
 
 Whilst, in theory, it would be possible to produce a basic plugin by "just" subclassing `BaseRunnerPlugin`, a more thorough implementation may also make changes to the controller module and its workflow itself.
 
