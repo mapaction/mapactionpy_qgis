@@ -1,0 +1,676 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis projectname="" version="3.4.1-Madeira">
+  <homePath path=""/>
+  <title></title>
+  <autotransaction active="0"/>
+  <evaluateDefaultValues active="0"/>
+  <trust active="0"/>
+  <projectCrs>
+    <spatialrefsys>
+      <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+      <srsid>3452</srsid>
+      <srid>4326</srid>
+      <authid>EPSG:4326</authid>
+      <description>WGS 84</description>
+      <projectionacronym>longlat</projectionacronym>
+      <ellipsoidacronym>WGS84</ellipsoidacronym>
+      <geographicflag>true</geographicflag>
+    </spatialrefsys>
+  </projectCrs>
+  <layer-tree-group>
+    <customproperties/>
+    <layer-tree-layer providerKey="ogr" id="slv_admn_ad1_py_s1_mapaction_pp_7f70b0bc_5d2d_4abb_8fce_af3817d74fb5" source="/Users/leon/Documents/MapAction/Projects/Metis/2019-06-25 - Automation - El Salvador/GIS/2_Active_Data/202_admn/slv_admn_ad1_py_s1_mapaction_pp.shp" checked="Qt::Checked" name="slv_admn_ad1_py_s1_mapaction_pp" expanded="1">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer providerKey="ogr" id="slv_admn_ad0_py_s0_unknown_pp_25a61be7_b34e_40dd_8082_821f816e2cce" source="/Users/leon/Documents/MapAction/Projects/Metis/2019-06-25 - Automation - El Salvador/GIS/2_Active_Data/202_admn/slv_admn_ad0_py_s0_unknown_pp.shp" checked="Qt::Checked" name="slv_admn_ad0_py_s0_unknown_pp" expanded="1">
+      <customproperties/>
+    </layer-tree-layer>
+    <custom-order enabled="0">
+      <item>slv_admn_ad1_py_s1_mapaction_pp_7f70b0bc_5d2d_4abb_8fce_af3817d74fb5</item>
+      <item>slv_admn_ad0_py_s0_unknown_pp_25a61be7_b34e_40dd_8082_821f816e2cce</item>
+    </custom-order>
+  </layer-tree-group>
+  <snapping-settings unit="1" enabled="0" tolerance="12" mode="2" type="1" intersection-snapping="0">
+    <individual-layer-settings>
+      <layer-setting id="slv_admn_ad1_py_s1_mapaction_pp_7f70b0bc_5d2d_4abb_8fce_af3817d74fb5" enabled="0" tolerance="12" type="1" units="1"/>
+      <layer-setting id="slv_admn_ad0_py_s0_unknown_pp_25a61be7_b34e_40dd_8082_821f816e2cce" enabled="0" tolerance="12" type="1" units="1"/>
+    </individual-layer-settings>
+  </snapping-settings>
+  <relations/>
+  <mapcanvas annotationsVisible="1" name="theMapCanvas">
+    <units>degrees</units>
+    <extent>
+      <xmin>-91.41825474353404957</xmin>
+      <ymin>11.48800047541722513</ymin>
+      <xmax>-85.78928281509166709</xmax>
+      <ymax>15.60292136584977918</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+  </mapcanvas>
+  <projectModels/>
+  <legend updateDrawingOrder="true">
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" drawingOrder="-1" name="slv_admn_ad1_py_s1_mapaction_pp">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="slv_admn_ad1_py_s1_mapaction_pp_7f70b0bc_5d2d_4abb_8fce_af3817d74fb5" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer showFeatureCount="0" open="true" checked="Qt::Checked" drawingOrder="-1" name="slv_admn_ad0_py_s0_unknown_pp">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile visible="1" layerid="slv_admn_ad0_py_s0_unknown_pp_25a61be7_b34e_40dd_8082_821f816e2cce" isInOverview="0"/>
+      </filegroup>
+    </legendlayer>
+  </legend>
+  <mapViewDocks/>
+  <mapViewDocks3D/>
+  <projectlayers>
+    <maplayer simplifyDrawingTol="1" geometry="Polygon" autoRefreshEnabled="0" labelsEnabled="0" simplifyLocal="1" refreshOnNotifyMessage="" maxScale="0" simplifyAlgorithm="0" readOnly="0" refreshOnNotifyEnabled="0" simplifyDrawingHints="1" minScale="1e+8" simplifyMaxScale="1" styleCategories="AllStyleCategories" type="vector" autoRefreshTime="0" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>-91.28423160238065748</xmin>
+        <ymin>11.58597478233228628</ymin>
+        <xmax>-85.92330595624505918</xmax>
+        <ymax>15.50494705893471803</ymax>
+      </extent>
+      <id>slv_admn_ad0_py_s0_unknown_pp_25a61be7_b34e_40dd_8082_821f816e2cce</id>
+      <datasource>/Users/leon/Documents/MapAction/Projects/Metis/2019-06-25 - Automation - El Salvador/GIS/2_Active_Data/202_admn/slv_admn_ad0_py_s0_unknown_pp.shp</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>slv_admn_ad0_py_s0_unknown_pp</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider encoding="UTF-8">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies/>
+      <legend type="default-vector"/>
+      <expressionfields/>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <renderer-v2 enableorderby="0" symbollevels="0" type="singleSymbol" forceraster="0">
+        <symbols>
+          <symbol clip_to_extent="1" type="fill" alpha="1" name="0">
+            <layer class="SimpleFill" enabled="1" pass="0" locked="0">
+              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="color" v="183,72,75,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="35,35,35,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.26"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option value="" type="QString" name="name"/>
+                  <Option name="properties"/>
+                  <Option value="collection" type="QString" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale/>
+      </renderer-v2>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
+        <activeChecks/>
+        <checkConfiguration/>
+      </geometryOptions>
+      <fieldConfiguration>
+        <field name="STATUS">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="DISP_AREA">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="ADM0_CODE">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="ADM0_NAME">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="STR0_YEAR">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="EXP0_YEAR">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="Shape_Leng">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="Shape_Area">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias index="0" field="STATUS" name=""/>
+        <alias index="1" field="DISP_AREA" name=""/>
+        <alias index="2" field="ADM0_CODE" name=""/>
+        <alias index="3" field="ADM0_NAME" name=""/>
+        <alias index="4" field="STR0_YEAR" name=""/>
+        <alias index="5" field="EXP0_YEAR" name=""/>
+        <alias index="6" field="Shape_Leng" name=""/>
+        <alias index="7" field="Shape_Area" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <defaults>
+        <default expression="" field="STATUS" applyOnUpdate="0"/>
+        <default expression="" field="DISP_AREA" applyOnUpdate="0"/>
+        <default expression="" field="ADM0_CODE" applyOnUpdate="0"/>
+        <default expression="" field="ADM0_NAME" applyOnUpdate="0"/>
+        <default expression="" field="STR0_YEAR" applyOnUpdate="0"/>
+        <default expression="" field="EXP0_YEAR" applyOnUpdate="0"/>
+        <default expression="" field="Shape_Leng" applyOnUpdate="0"/>
+        <default expression="" field="Shape_Area" applyOnUpdate="0"/>
+      </defaults>
+      <constraints>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="STATUS"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="DISP_AREA"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="ADM0_CODE"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="ADM0_NAME"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="STR0_YEAR"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="EXP0_YEAR"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="Shape_Leng"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="Shape_Area"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint exp="" desc="" field="STATUS"/>
+        <constraint exp="" desc="" field="DISP_AREA"/>
+        <constraint exp="" desc="" field="ADM0_CODE"/>
+        <constraint exp="" desc="" field="ADM0_NAME"/>
+        <constraint exp="" desc="" field="STR0_YEAR"/>
+        <constraint exp="" desc="" field="EXP0_YEAR"/>
+        <constraint exp="" desc="" field="Shape_Leng"/>
+        <constraint exp="" desc="" field="Shape_Area"/>
+      </constraintExpressions>
+      <expressionfields/>
+      <attributeactions>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
+      </attributeactions>
+      <attributetableconfig actionWidgetStyle="dropDown" sortOrder="0" sortExpression="">
+        <columns/>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <editform tolerant="1"></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable/>
+      <labelOnTop/>
+      <widgets/>
+      <previewExpression></previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
+    <maplayer simplifyDrawingTol="1" geometry="Polygon" autoRefreshEnabled="0" labelsEnabled="0" simplifyLocal="1" refreshOnNotifyMessage="" maxScale="0" simplifyAlgorithm="0" readOnly="0" refreshOnNotifyEnabled="0" simplifyDrawingHints="1" minScale="1e+8" simplifyMaxScale="1" styleCategories="AllStyleCategories" type="vector" autoRefreshTime="0" hasScaleBasedVisibilityFlag="0">
+      <extent>
+        <xmin>-90.12432264999995368</xmin>
+        <ymin>13.15539460000002236</ymin>
+        <xmax>-87.68379759999993439</xmax>
+        <ymax>14.44507000000002606</ymax>
+      </extent>
+      <id>slv_admn_ad1_py_s1_mapaction_pp_7f70b0bc_5d2d_4abb_8fce_af3817d74fb5</id>
+      <datasource>/Users/leon/Documents/MapAction/Projects/Metis/2019-06-25 - Automation - El Salvador/GIS/2_Active_Data/202_admn/slv_admn_ad1_py_s1_mapaction_pp.shp</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>slv_admn_ad1_py_s1_mapaction_pp</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider encoding="UTF-8">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies/>
+      <legend type="default-vector"/>
+      <expressionfields/>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <renderer-v2 enableorderby="0" symbollevels="0" type="singleSymbol" forceraster="0">
+        <symbols>
+          <symbol clip_to_extent="1" type="fill" alpha="1" name="0">
+            <layer class="SimpleFill" enabled="1" pass="0" locked="0">
+              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="color" v="255,158,23,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="35,35,35,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.26"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option value="" type="QString" name="name"/>
+                  <Option name="properties"/>
+                  <Option value="collection" type="QString" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale/>
+      </renderer-v2>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
+        <activeChecks/>
+        <checkConfiguration/>
+      </geometryOptions>
+      <fieldConfiguration>
+        <field name="ADM1_CODE">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="ADM1_NAME">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="STR1_YEAR">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="EXP1_YEAR">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="STATUS">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="DISP_AREA">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="ADM0_CODE">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="ADM0_NAME">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="Shape_Leng">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="Shape_Area">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias index="0" field="ADM1_CODE" name=""/>
+        <alias index="1" field="ADM1_NAME" name=""/>
+        <alias index="2" field="STR1_YEAR" name=""/>
+        <alias index="3" field="EXP1_YEAR" name=""/>
+        <alias index="4" field="STATUS" name=""/>
+        <alias index="5" field="DISP_AREA" name=""/>
+        <alias index="6" field="ADM0_CODE" name=""/>
+        <alias index="7" field="ADM0_NAME" name=""/>
+        <alias index="8" field="Shape_Leng" name=""/>
+        <alias index="9" field="Shape_Area" name=""/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <defaults>
+        <default expression="" field="ADM1_CODE" applyOnUpdate="0"/>
+        <default expression="" field="ADM1_NAME" applyOnUpdate="0"/>
+        <default expression="" field="STR1_YEAR" applyOnUpdate="0"/>
+        <default expression="" field="EXP1_YEAR" applyOnUpdate="0"/>
+        <default expression="" field="STATUS" applyOnUpdate="0"/>
+        <default expression="" field="DISP_AREA" applyOnUpdate="0"/>
+        <default expression="" field="ADM0_CODE" applyOnUpdate="0"/>
+        <default expression="" field="ADM0_NAME" applyOnUpdate="0"/>
+        <default expression="" field="Shape_Leng" applyOnUpdate="0"/>
+        <default expression="" field="Shape_Area" applyOnUpdate="0"/>
+      </defaults>
+      <constraints>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="ADM1_CODE"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="ADM1_NAME"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="STR1_YEAR"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="EXP1_YEAR"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="STATUS"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="DISP_AREA"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="ADM0_CODE"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="ADM0_NAME"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="Shape_Leng"/>
+        <constraint constraints="0" notnull_strength="0" unique_strength="0" exp_strength="0" field="Shape_Area"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint exp="" desc="" field="ADM1_CODE"/>
+        <constraint exp="" desc="" field="ADM1_NAME"/>
+        <constraint exp="" desc="" field="STR1_YEAR"/>
+        <constraint exp="" desc="" field="EXP1_YEAR"/>
+        <constraint exp="" desc="" field="STATUS"/>
+        <constraint exp="" desc="" field="DISP_AREA"/>
+        <constraint exp="" desc="" field="ADM0_CODE"/>
+        <constraint exp="" desc="" field="ADM0_NAME"/>
+        <constraint exp="" desc="" field="Shape_Leng"/>
+        <constraint exp="" desc="" field="Shape_Area"/>
+      </constraintExpressions>
+      <expressionfields/>
+      <attributeactions>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
+      </attributeactions>
+      <attributetableconfig actionWidgetStyle="dropDown" sortOrder="0" sortExpression="">
+        <columns/>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <editform tolerant="1"></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable/>
+      <labelOnTop/>
+      <widgets/>
+      <previewExpression></previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
+  </projectlayers>
+  <layerorder>
+    <layer id="slv_admn_ad1_py_s1_mapaction_pp_7f70b0bc_5d2d_4abb_8fce_af3817d74fb5"/>
+    <layer id="slv_admn_ad0_py_s0_unknown_pp_25a61be7_b34e_40dd_8082_821f816e2cce"/>
+  </layerorder>
+  <properties>
+    <PAL>
+      <CandidatesPoint type="int">16</CandidatesPoint>
+      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
+      <CandidatesPolygon type="int">30</CandidatesPolygon>
+      <ShowingCandidates type="bool">false</ShowingCandidates>
+      <DrawOutlineLabels type="bool">true</DrawOutlineLabels>
+      <CandidatesLine type="int">50</CandidatesLine>
+      <DrawRectOnly type="bool">false</DrawRectOnly>
+      <ShowingAllLabels type="bool">false</ShowingAllLabels>
+      <SearchMethod type="int">0</SearchMethod>
+    </PAL>
+    <Measurement>
+      <AreaUnits type="QString">m2</AreaUnits>
+      <DistanceUnits type="QString">meters</DistanceUnits>
+    </Measurement>
+    <Measure>
+      <Ellipsoid type="QString">WGS84</Ellipsoid>
+    </Measure>
+    <Gui>
+      <CanvasColorRedPart type="int">250</CanvasColorRedPart>
+      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
+      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
+      <CanvasColorBluePart type="int">250</CanvasColorBluePart>
+      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
+      <CanvasColorGreenPart type="int">250</CanvasColorGreenPart>
+      <SelectionColorGreenPart type="int">226</SelectionColorGreenPart>
+    </Gui>
+    <Paths>
+      <Absolute type="bool">false</Absolute>
+    </Paths>
+    <SpatialRefSys>
+      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
+    </SpatialRefSys>
+    <PositionPrecision>
+      <Automatic type="bool">true</Automatic>
+      <DecimalPlaces type="int">2</DecimalPlaces>
+    </PositionPrecision>
+    <Legend>
+      <filterByMap type="bool">false</filterByMap>
+    </Legend>
+  </properties>
+  <visibility-presets/>
+  <transformContext/>
+  <projectMetadata>
+    <identifier></identifier>
+    <parentidentifier></parentidentifier>
+    <language></language>
+    <type></type>
+    <title></title>
+    <abstract></abstract>
+    <links/>
+    <author>Leon Baruah</author>
+    <creation>2019-07-19T10:31:06</creation>
+  </projectMetadata>
+  <Annotations/>
+  <Layouts>
+    <Layout worldFileMap="{6b0009da-dc0d-41ab-9951-4555928f85c6}" printResolution="300" units="mm" name="MA001">
+      <Snapper snapToGrid="0" snapToGuides="1" snapToItems="1" tolerance="5"/>
+      <Grid resUnits="mm" resolution="10" offsetX="0" offsetY="0" offsetUnits="mm"/>
+      <PageCollection>
+        <symbol clip_to_extent="1" type="fill" alpha="1" name="">
+          <layer class="SimpleFill" enabled="1" pass="0" locked="0">
+            <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+            <prop k="color" v="255,255,255,255"/>
+            <prop k="joinstyle" v="miter"/>
+            <prop k="offset" v="0,0"/>
+            <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+            <prop k="offset_unit" v="MM"/>
+            <prop k="outline_color" v="35,35,35,255"/>
+            <prop k="outline_style" v="no"/>
+            <prop k="outline_width" v="0.26"/>
+            <prop k="outline_width_unit" v="MM"/>
+            <prop k="style" v="solid"/>
+            <data_defined_properties>
+              <Option type="Map">
+                <Option value="" type="QString" name="name"/>
+                <Option name="properties"/>
+                <Option value="collection" type="QString" name="type"/>
+              </Option>
+            </data_defined_properties>
+          </layer>
+        </symbol>
+        <LayoutItem itemRotation="0" positionLock="false" type="65638" groupUuid="" size="297,210,mm" position="0,0,mm" excludeFromExports="0" referencePoint="0" outlineWidthM="0.3,mm" uuid="{f45cf4bd-f477-4f92-9af8-7e27ebf0cca6}" templateUuid="{f45cf4bd-f477-4f92-9af8-7e27ebf0cca6}" opacity="1" frame="false" id="" background="true" positionOnPage="0,0,mm" zValue="0" blendMode="0" visibility="1" frameJoinStyle="miter">
+          <FrameColor green="0" blue="0" red="0" alpha="255"/>
+          <BackgroundColor green="255" blue="255" red="255" alpha="255"/>
+          <LayoutObject>
+            <dataDefinedProperties>
+              <Option type="Map">
+                <Option value="" type="QString" name="name"/>
+                <Option name="properties"/>
+                <Option value="collection" type="QString" name="type"/>
+              </Option>
+            </dataDefinedProperties>
+            <customproperties/>
+          </LayoutObject>
+        </LayoutItem>
+        <GuideCollection visible="1"/>
+      </PageCollection>
+      <LayoutItem itemRotation="0" positionLock="false" type="65639" groupUuid="" size="210.047,210,mm" position="0,0,mm" excludeFromExports="0" referencePoint="0" outlineWidthM="0.3,mm" drawCanvasItems="true" keepLayerSet="false" uuid="{6b0009da-dc0d-41ab-9951-4555928f85c6}" followPreset="false" templateUuid="{6b0009da-dc0d-41ab-9951-4555928f85c6}" opacity="1" frame="false" id="" background="true" positionOnPage="0,0,mm" zValue="1" blendMode="0" visibility="1" mapRotation="0" followPresetName="" frameJoinStyle="miter">
+        <FrameColor green="0" blue="0" red="0" alpha="255"/>
+        <BackgroundColor green="250" blue="250" red="250" alpha="255"/>
+        <LayoutObject>
+          <dataDefinedProperties>
+            <Option type="Map">
+              <Option value="" type="QString" name="name"/>
+              <Option name="properties"/>
+              <Option value="collection" type="QString" name="type"/>
+            </Option>
+          </dataDefinedProperties>
+          <customproperties/>
+        </LayoutObject>
+        <Extent ymax="15.22112721310204009" xmin="-90.2798131817663716" ymin="11.86979462816496422" xmax="-86.92772437685934506"/>
+        <LayerSet/>
+        <AtlasMap atlasDriven="0" margin="0.10000000000000001" scalingMode="2"/>
+      </LayoutItem>
+      <customproperties>
+        <property value="png" key="atlasRasterFormat"/>
+      </customproperties>
+      <Atlas coverageLayerName="slv_admn_ad1_py_s1_mapaction_pp" pageNameExpression="" sortFeatures="0" filterFeatures="0" coverageLayer="slv_admn_ad1_py_s1_mapaction_pp_7f70b0bc_5d2d_4abb_8fce_af3817d74fb5" filenamePattern="'output_'||@atlas_featurenumber" enabled="0" coverageLayerProvider="ogr" coverageLayerSource="/Users/leon/Documents/MapAction/Projects/Metis/2019-06-25 - Automation - El Salvador/GIS/2_Active_Data/202_admn/slv_admn_ad1_py_s1_mapaction_pp.shp" hideCoverage="0"/>
+    </Layout>
+  </Layouts>
+</qgis>
