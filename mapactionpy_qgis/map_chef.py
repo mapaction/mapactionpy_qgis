@@ -90,7 +90,7 @@ class MapChef:
     """
     Worker which creates a Map based on a predefined "recipe" from a cookbook
     """
-
+   
     def __init__(self,
                  qgs_project,
                  crashMoveFolder,
@@ -123,15 +123,15 @@ class MapChef:
         Makes all layers visible for all data-frames
         """
         pass
-
+    
     def removeLayers(self):
         """
         Removes all layers for all data-frames
         """
         pass
-
+       
     def cook(self, recipe):
-
+      
         self.disableLayers()
         self.removeLayers()
 
@@ -140,13 +140,13 @@ class MapChef:
 
             for recipe_frame in recipe.map_frames:
                 layoutItemmMap = get_layout_Item(recipe_frame.name)
-                for recipe_lyr in recipe_frame.layers:
+                for recipe_lyr in recipe_frame.layers: 
                     self.process_layer(recipe_lyr, layoutItemmMap)
 
                 self.apply_frame_crs_and_extent(layoutItemmMap, recipe_frame)
 
         self.enableLayers()
-
+      
         self.showLegendEntries()
         self.qgs_project.save()
 
@@ -179,19 +179,19 @@ class MapChef:
                            os.linesep.join([self.eventConfiguration.default_source_organisation, self.eventConfiguration.deployment_primary_email, self.eventConfiguration.default_source_organisation_url])}
         
         map(lambda element_id: get_layout_Item(element_id).setText(update_data[element_id]), update_data)
-        self.qgs_project.write() 
+        self.qgs_project.write()
 
-    def showLegendEntries(self): 
-        
+    def showLegendEntries(self):
+      
         legend = get_layout_Item("legend")
         legend.setAutoUpdateModel(True)
         self.qgs_project.write()
 
     def alignLegend(self, orientation):
         pass
+        
 
-
-    def resizeScaleBar(self): 
+    def resizeScaleBar(self):
         scale_bar = get_layout_Item("scale")
         scale_bar.applyDataDefinedSize() 
         scale_bar.update()
@@ -219,11 +219,11 @@ class MapChef:
 
         logging.debug('Attempting to add layer; {}'.format(recipe_lyr.layer_file_path))
         arc_lyr_to_add = arcpy.mapping.Layer(recipe_lyr.layer_file_path)
-
+       
         try:
             self.apply_layer_visiblity(arc_lyr_to_add, recipe_lyr)
             self.apply_label_classes(arc_lyr_to_add, recipe_lyr)
-
+            
             self.apply_definition_query(arc_lyr_to_add, recipe_lyr)
             self.addLayerWithFile(arc_lyr_to_add, recipe_lyr, recipe_frame)
             recipe_lyr.success = True
@@ -282,7 +282,7 @@ class MapChef:
         raise ValueError('"Unsupported dataset type with path: {}'.format(f_path))
 
     def addLayerWithFile(self, arc_lyr_to_add, recipe_lyr, recipe_frame):
-        
+      
         try:
             recipe_lyr.data_source_path
         except AttributeError:

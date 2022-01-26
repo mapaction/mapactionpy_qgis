@@ -4,7 +4,7 @@ import json
 from PIL import Image
 from resizeimage import resizeimage
 from slugify import slugify
-from map_chef import MapChef, get_map_scale, get_map_spatial_ref
+from mapactionpy_qgis.map_chef import MapChef, get_map_scale, get_map_spatial_ref
 from mapactionpy_controller.plugin_base import BaseRunnerPlugin
 from qgis.core import (
     QgsGeometry,
@@ -67,7 +67,7 @@ class ArcMapRunner(BaseRunnerPlugin):
         qgs_project = QgsProject.instance()
         self.chef = MapChef(qgs_project, self.cmf, self.hum_event)
         self.chef.cook(recipe)
-    
+        
         final_recipe_file = recipe.map_project_path.replace(".qgs", ".json")
         with open(final_recipe_file, 'w') as outfile:
             outfile.write(str(recipe))
@@ -134,7 +134,7 @@ class ArcMapRunner(BaseRunnerPlugin):
             results.append((template, aspect_ratio))
             logging.debug('Calculated aspect ratio= {} for template={}'.format(aspect_ratio, template))
         return results
-
+    
     def haveDataSourcesChanged(self, previousReportFile):
         return True
 
@@ -204,9 +204,9 @@ class ArcMapRunner(BaseRunnerPlugin):
         queryColumn = recipe_with_atlas.atlas.column_name
 
         lyr_index = recipe_frame.layers.index(recipe_lyr)
-
+       
         regions = list()
-
+        
         for region in regions:
             query = "\"" + queryColumn + "\" = \'" + region + "\'"
             logging.info('About to export atlas page for region; {}.'.format(region))
