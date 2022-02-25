@@ -94,7 +94,9 @@ class QGisRunner(BaseRunnerPlugin):
 
     def load_print_layout(self,project,template):
         principal_layout = QgsPrintLayout(project)
-        principal_layout.setName(os.path.basename(template).replace(".qpt",""))
+        layout_name = os.path.split(template)[1].replace(".qpt","")
+        logging.info(f"using layout name {layout_name}")
+        principal_layout.setName(layout_name)
         logging.info(f"laout pages default {len(principal_layout.pageCollection().pages())}")
         principal_layout.initializeDefaults()
         logging.info(f"laout pages after init defaults {len(principal_layout.pageCollection().pages())}")
@@ -123,6 +125,7 @@ class QGisRunner(BaseRunnerPlugin):
         if(len(lManager.printLayouts())<1):
             principal_layout= self.load_print_layout(qgs_project,recipe.template_path)
             qgs_project.layoutManager().addLayout(principal_layout)
+            logging.info(f"added layout with name {principal_layout.name()}")
 
         projectFilePath = recipe.map_project_path.replace(".qpt",".qgz")
         #qgs_project.filePath = projectFilePath 
@@ -238,7 +241,7 @@ class QGisRunner(BaseRunnerPlugin):
             logging.info('Calculated aspect ratio= {} for template={}'.format(aspect_ratio, template))
         # project.write(target_project_path) we can use this to create the project file for specified product  
         return results
-  
+ 
     def haveDataSourcesChanged(self, previousReportFile):
         # previousReportFile = '{}-v{}_{}.json'.format(
         #     recipe.mapnumber,
@@ -326,7 +329,7 @@ class QGisRunner(BaseRunnerPlugin):
         if not recipe_with_atlas.atlas:
             raise ValueError('Cannot export atlas. The specified recipe does not contain an atlas definition')
 
-      
+
 
         recipe_frame = recipe_with_atlas.get_frame(recipe_with_atlas.atlas.map_frame)
         recipe_lyr = recipe_frame.get_layer(recipe_with_atlas.atlas.layer_name)
@@ -458,22 +461,15 @@ class QGisRunner(BaseRunnerPlugin):
             layers = main_map.layers()#layerTreeRoot().findLayers()
             logging.info(f"loaded main map <{main_map.displayName()}> contains layers {[lyr.name() for lyr in main_map.layers()]}")
             #use new mapSettings instance
-            ms = QgsMapSettings()
-            ms.setLayers(layers) # set layers to be mapped
-            rect = ms.fullExtent() #should this be done in map chef <equivalent to ZoomToCountry>??
-            logging.info(f"ms full extebt {rect.toString()}")
             #rect.scale(1.0)
             # logging.info(f"ms.fullextent after scale {rect.toString()}")
             # ms.setExtent(rect)
-            logging.info(f"mainMap before {main_map.extent()}")
-            main_map.zoomToExtent(list(filter(lambda l:l.name() == "hnd_admn_ad0_ln_s0_sinit_pp_ocha_country",layers))[0].extent())
             exportSettings = QgsLayoutExporter.PdfExportSettings()
-
+            logging.info(f"export settings : is geopdf {exportSettings.writeGeoPdf}")
 
             logging.info(f"mainMap after {main_map.extent()}")
             logging.info(f" mapLayer to render 2 {[lyr.name() for lyr in main_map.layersToRender()]}")
             #map_settings = main_map.mapSettings(rect, includeLayerSettings = False) 
-            logging.info(f"generated mapsettings layers<{ms.layers()}> ")
             exporter = QgsLayoutExporter(layout)
             logging.info(f"layout exporter created ")                  
             #logging.info(f"{exportSettings.dpi()} -metadata {exportSettings.exportMetadata()} flags {exportSettings.flags()}")
@@ -481,7 +477,7 @@ class QGisRunner(BaseRunnerPlugin):
             #with open(os.path.join(os.getcwd(),"lyrs.dt"),"wb")as f :
             #    Pickler(f).dump([lyr.name() for lyr in main_map.layers()])
             qgs_project.write()
-            logging.info(f"layout export dpi param setted -exporting to pdf {pdf_fpath} .")
+            logging.info(f"layout export dpi param setted -exporting to pdf {pdf_fpath}")
             #mod br
             #tempPath = "export.pdf"
             result = exporter.exportToPdf(pdf_fpath,exportSettings) #pdf_fpath,exportSettings))")

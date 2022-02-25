@@ -1,4 +1,5 @@
 import os, sys,traceback
+from pickle import TRUE, Pickler
 from posixpath import basename
 import logging
 import re
@@ -97,11 +98,7 @@ def get_map_spatial_ref(qgs_project, recipe):
             recipe.principal_map_frame)
         raise ValueError(err_msg)
     
-    #Todo do we need this chack ??
-    #if len(data_frames) > 1:
-    #    err_msg = 'MXD has more than one MapFrames (aka DataFrames) with the name "{}"'.format(
-    #        recipe.principal_map_frame)
-    #    raise ValueError(err_msg)
+    
     spatial_ref_desc = main_map.crs().description()
     spatial_ref_str = "Unknown" if(not spatial_ref_desc) else spatial_ref_desc
     return spatial_ref_str
@@ -111,7 +108,7 @@ class MapChef:
     """
     Worker which creates a Map based on a predefined "recipe" from a cookbook
     """
-
+   
     def __init__(self,
                  qgs_project,
                  crashMoveFolder,
@@ -142,7 +139,7 @@ class MapChef:
         Makes all layers invisible for all data-frames
         """ 
         pass
-      
+ 
     def enableLayers(self):
         """
         Makes all layers visible for all data-frames
@@ -182,13 +179,18 @@ class MapChef:
                 logging.info(f"processing mapFrame {recipe_frame.name} using layut {self.template_name}")
                 layoutItemmMap = get_layout_Item(recipe_frame.name, self.template_name)              
                 if(layoutItemmMap) :
-                    self.apply_frame_crs_and_extent(layoutItemmMap, recipe_frame)
+                    extent_layers = []
                     for recipe_lyr in recipe_frame.layers:
+                        if(recipe_lyr.use_for_frame_extent):
+                            logging.info(f"extent layer spoted {recipe_lyr.data_name} in map {layoutItemmMap.displayName()}")
                         # Do things at an individual layer level
-                        self.process_layer(recipe_lyr, recipe_frame)
-
+                        layer_to_add = self.process_layer(recipe_lyr, recipe_frame)
+                        print(f"layer_to add type {type(layer_to_add)}")
+                        if(layer_to_add is not None  and recipe_lyr.use_for_frame_extent == True):
+                            logging.info(f"adding layer as extent lyr {layer_to_add.name()}")
+                            extent_layers.append(layer_to_add)
                     # Do things at an map/data frame level
-                    self.apply_frame_crs_and_extent(layoutItemmMap, recipe_frame)
+                    self.apply_frame_crs_and_extent(layoutItemmMap,recipe_frame=recipe_frame, extent_layers = extent_layers)
                 else :
                     logging.info(f"unfound mapFrame {recipe_frame.name}")
         # Do things at a map layout level
@@ -209,7 +211,7 @@ class MapChef:
         Updates or Adds a layer of data.  Maintains the Map Report.
         """
         # Try just using add Layer (currently no update layer option)
-        self.addLayer(recipe_lyr, layoutItemmMap)
+        return self.addLayer(recipe_lyr, layoutItemmMap)
 
     def updateTextElements(self, recipe):
         """
@@ -229,7 +231,13 @@ class MapChef:
                        "map_producer": "Produced by " + \
                            os.linesep.join([self.eventConfiguration.default_source_organisation, self.eventConfiguration.deployment_primary_email, self.eventConfiguration.default_source_organisation_url])}
         
-        map(lambda element_id: get_layout_Item(element_id, self.template_name).setText(update_data[element_id]), update_data)
+        for id,el in  map(lambda element_id:(element_id, get_layout_Item(element_id, self.template_name)), update_data) :
+            logging.info(f"start updating text element  : {id}  ")
+            try :
+                el.setText(update_data[id])
+                logging.info(f"updated text element  : {id}  ")
+            except Exception as e : 
+                logging.info(f"cant update text element <{id}> : {e}")
         self.qgs_project.write() #make sure the fileName property is set on the self.qgs_project object
 
     def showLegendEntries(self): # layer inclusion in the legent may be controlled by setting the autoUpdateMode to True on the legend object and seting the addToLegend flag during layers addition the project object 
@@ -244,7 +252,7 @@ class MapChef:
         #            layerNames.append(lyr.name)
         
 
-
+   
     def alignLegend(self, orientation):# TODO do we need this or its preset by the template
         pass
         #for legend in arcpy.mapping.ListLayoutElements(self.qgs_project, "LEGEND_ELEMENT"):
@@ -265,7 +273,7 @@ class MapChef:
         ###elm.elementWidth = 51.1585
         ###self.qgs_project.save()
 
-    def apply_frame_crs_and_extent(self, qgs_data_frame, recipe_frame):
+    def apply_frame_crs_and_extent(self, qgs_data_frame, recipe_frame,extent_layers = []):
         """
         """
         # minx, miny, maxx, maxy = recipe_frame.extent
@@ -275,27 +283,41 @@ class MapChef:
         if not recipe_frame.crs[:5].lower() == 'epsg:':
             raise ValueError('unrecognised `recipe_frame.crs` value "{}". String does not begin with "EPSG:"'.format(
                 recipe_frame.crs))
-
         crsString= f"EPSG:{recipe_frame.crs[5:]}"
         targetCrs = QgsCoordinateReferenceSystem(crsString)
         qgs_data_frame.setCrs(targetCrs)
-
-        if recipe_frame.extent:
+        if(len(extent_layers)>0):
+            logging.info(f"setting extent of map {qgs_data_frame.displayName} from layers {[l.name() for l in extent_layers]}")
+            ms = QgsMapSettings()
+            ms.setLayers(extent_layers) # set layers to be mapped
+            rect = ms.fullExtent()
+            qgs_data_frame.zoomToExtent(rect)
+            
+        elif recipe_frame.extent:
             new_extent = QgsRectangle(*recipe_frame.extent)
-            qgs_data_frame.setExtent = new_extent
+            #qgs_data_frame.setExtent = map_settings.fullExtent()
+        if(qgs_data_frame.id() == "Location map"):
+            logging.info(f"updating locationmap scale <old {qgs_data_frame.scale()} new {qgs_data_frame.scale() * 2} >")
+            qgs_data_frame.setScale(qgs_data_frame.scale() * 2)
         self.qgs_project.write()
+    from pickle import Pickler,Unpickler              
+    missing_data_layers = []
 
     def addLayer(self, recipe_lyr, recipe_frame): #TODO make grouped injection of layers based on <addToLegend flag value>
         # addLayer(recipe_lyr, recipe_lyr.layer_file_path, recipe_lyr.name)
         # mapResult = MapResult(recipe_lyr.name)
         #logging.debug('Attempting to add layer; {}'.format(recipe_lyr.data_source_path))
         #logging.info(f"using recipelaye{recipe_lyr} path data {os.path.realpath(recipe_lyr.data_source_path)}")
-        logging.info(f"adding layer <{recipe_lyr.data_source_path}>")
+        logging.info(f"adding layer <{recipe_lyr.data_source_path}>")   
         try:
-            if(not recipe_lyr.data_source_path or recipe_lyr.data_name == "hnd_elev_cst_ln_s0_gadm_pp_coast"):
-                return 
-        except AttributeError:
-            return
+
+            if(not recipe_lyr.data_source_path):
+                with open(os.path.join(os.getcwd(),"layersWithoutDataSources.data"),'a') as f:
+                    f.write(f"\n-------------{recipe_lyr.name}\n\t regexp : :  {recipe_lyr.reg_exp} \n\t {'-'.join(recipe_lyr.error_messages)}")
+                return None
+        except Exception as e:
+            logging.error(f"liset error at layer {recipe_lyr.data_source_path} - {recipe_lyr.data_name} \n {e}")
+            return None
         logging.info("passed layer source check ")
         target_layer_type = self.get_dataset_type_from_path(os.path.realpath(recipe_lyr.data_source_path))
         mapLayer_toAdd = QgsVectorLayer(recipe_lyr.data_source_path,recipe_lyr.data_name,"ogr") if(target_layer_type == QgsMapLayerType.VectorLayer) \
@@ -310,26 +332,27 @@ class MapChef:
         #     mapResult = self.addLayerWithGdb(recipe_lyr, arc_lyr_to_add,  recipe_frame)
 
         # Apply Label Classes
-        if(recipe_lyr.data_name in ['hnd_phys_lak_py_s0_osm_pp_waterbodies', 'hnd_phys_riv_ln_s0_osm_pp_waterways']):
-            logging.info(f"layer detail : <{[recipe_lyr.data_name,recipe_lyr.extent,recipe_lyr.crs,recipe_lyr.visible]}")
         try:
-            ###self.apply_layer_visiblity(mapLayer_toAdd, recipe_lyr)
             self.apply_label_classes(mapLayer_toAdd, recipe_lyr)
             # Apply Definition Query
             ###self.apply_definition_query(mapLayer_toAdd, recipe_lyr)
             logging.info(f"adding layer with file")
             self.addLayerWithFile(mapLayer_toAdd, recipe_lyr, recipe_frame)
+            self.apply_layer_visiblity(mapLayer_toAdd, recipe_lyr)
             recipe_lyr.success = True
+            return mapLayer_toAdd
         except Exception as e: 
             logging.info(f"failed while processing created layer object {e}")
             logging.info(f"{traceback.format_exc()}")
             recipe_lyr.success = False
+            return None
 
     def apply_layer_visiblity(self, qgs_lyr_to_add, recipe_lyr):
-        if(recipe_lyr.visible):
-            targetLayerNode = [lyrNode for lyrNode in self.qgs_project.QgsLayerTree().children() if(lyrNode.layerId() == qgs_lyr_to_add.id())][0]
-            targetLayerNode.setVisible(True)
-            self.layersToShow.append(qgs_lyr_to_add.name()) ## used in ms = QgsMapSettings() ;ms.setLayers([layers_to_add_to map])
+        if(qgs_lyr_to_add and recipe_lyr.visible): 
+            targetLayerNode = self.qgs_project.layerTreeRoot().findLayer(qgs_lyr_to_add.id())
+            if(targetLayerNode):
+                targetLayerNode.setItemVisibilityChecked(True)
+                self.layersToShow.append(qgs_lyr_to_add.id()) ## used in ms = QgsMapSettings() ;ms.setLayers([layers_to_add_to map])
         #if arc_lyr_to_add.supports('VISIBLE'):
         #    try:
         #        arc_lyr_to_add.visible = recipe_lyr.visible
@@ -338,10 +361,12 @@ class MapChef:
         #            exp.message))
 
     def apply_label_classes(self, qgis_lyr_to_add, recipe_lyr): #TODO this shoud be replaced by       
-        styling_file_path =recipe_lyr.layer_file_path.replace(recipe_lyr.layer_file_path.split(".")[-1],"qml")
+        styling_file_path =self.crashMoveFolder.layer_rendering+"/3123_qgis/"+os.path.split(recipe_lyr.layer_file_path)[1].replace(".lyr",".qml").replace(".lyrx",".qml")
         logging.info(f"styling file path {styling_file_path}")
         if(os.path.exists(styling_file_path)):
             qgis_lyr_to_add.loadNamedStyle(styling_file_path)
+        else  :
+            logging.error(f"cant find srtyling file for layer {recipe_lyr.data_name} in it's expected loacation: {styling_file_path}")
         return
         if arc_lyr_to_add.supports("LABELCLASSES"):
             for labelClass in recipe_lyr.label_classes:
@@ -396,22 +421,20 @@ class MapChef:
         data_src_dir = os.path.dirname(r_path)
         logging.info(f"using recipelaye{recipe_lyr} path data {r_path}")
         #dataset_type = self.get_dataset_type_from_path(r_path) # this can only be used during instanciation of the mapLayer object 
-        # Apply Data Source
-        logging.info(f"target layer <{recipe_lyr.data_name}> has capabilities : {qgs_lyr_to_add.dataProvider().capabilities()}")
-        
+                
         try:
             qgs_lyr_to_add.dataProvider().setDataSourceUri(r_path)
             layoutItemMap = get_layout_Item(recipe_frame.name,self.template_name)
-            self.qgs_project.addMapLayer(qgs_lyr_to_add,addToLegend=recipe_lyr.add_to_legend)
-            map_layers_set = layoutItemMap.layers()
-            map_layers_set = (set(map_layers_set) if(map_layers_set) else set())
-            map_layers_set.add(qgs_lyr_to_add)
+            self.qgs_project.addMapLayer(qgs_lyr_to_add)
             if(recipe_lyr.visible):
+                map_layers_set = layoutItemMap.layers()
+                map_layers_set = map_layers_set if(map_layers_set) else []
+                map_layers_set.append(qgs_lyr_to_add)
                 layoutItemMap.setLayers(map_layers_set) #TODO do we need this or its fine to work with project layers
             logging.info("finished adding layer with file")
             
             #arc_data_frame = arcpy.mapping.ListDataFrames(self.qgs_project, recipe_frame.name)[0]
-          
+           
         except Exception as e: 
             logging.info(f"{traceback.format_exc()}")
         finally:
