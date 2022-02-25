@@ -81,7 +81,7 @@ class QGisRunner(BaseRunnerPlugin):
                  hum_event):
         super(QGisRunner, self).__init__(hum_event)
         dump_loaded_dlls()
-        QgsApplication.setPrefixPath(os.environ["QGIS_INSTALLATION"], True) # Todo add to requirements <installation envirenement variable>
+        QgsApplication.setPrefixPath(os.environ["QGIS_PATH"], True) # Todo add to requirements <installation envirenement variable>
         self.qgs = QgsApplication([], False)
         # load providers
         self.qgs.initQgis()
