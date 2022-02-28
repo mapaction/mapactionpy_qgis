@@ -27,6 +27,7 @@ RUN conda run --no-capture-output -n myenv conda install -c conda-forge qgis
 RUN conda run --no-capture-output -n myenv pip install Pillow
 RUN conda run --no-capture-output -n myenv pip install python-resize-image
 RUN conda run --no-capture-output -n myenv pip install psutil
+RUN conda run --no-capture-output -n myenv pip install pdf2image
 RUN git clone -b occamlabsqgis https://github.com/mapaction/mapactionpy_qgis.git 
 RUN git clone -b occamlabsarcpro https://github.com/mapaction/mapactionpy_controller.git 
 RUN conda run --no-capture-output -n myenv pip install -e mapactionpy_controller

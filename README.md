@@ -45,7 +45,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 * Please download and install Docker.
 * Please Download and install [VcXsrv Windows X Server](https://sourceforge.net/projects/vcxsrv/)
 * Download `Dockerfile.conda` and `environment.yml` files.
-* Navigate to the folder containing the dockerfile and build the Docker image using the following command `docker build -t qgisRunner -f Dockerfile.conda . --no-cache`.
-* Before running the QgisRunner command please launch VcXsrv Windows X Server with the default options.
+* Navigate to the folder containing the dockerfile and build the Docker image using the following command `docker build -t qgisrunner -f Dockerfile.conda . --no-cache`.
+* Before running the qgisrunner command please launch VcXsrv Windows X Server with the default options.
 * You can run the runner with the command below, please replace the `CMF_PATH` by the path of CMF:
-`docker run -it -v CMF_PATH:/cmf qgisRunner  conda run --no-capture-output -n myenv mapchef maps --build "/cmf/honduras/event_description.json" --map-number "MA9999"`
+`docker run -it -v CMF_PATH:/cmf qgisrunner  conda run --no-capture-output -n myenv mapchef maps --build "/cmf/honduras/event_description.json" --map-number "MA9999"`
