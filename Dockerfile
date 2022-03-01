@@ -33,6 +33,10 @@ RUN git clone -b occamlabsarcpro https://github.com/mapaction/mapactionpy_contro
 RUN conda run --no-capture-output -n myenv pip install -e mapactionpy_controller
 RUN conda run --no-capture-output -n myenv pip install -e mapactionpy_qgis
 
+COPY ./fonts/Eurostile.ttf ./
+RUN install -m644 Eurostile.ttf /usr/share/fonts/truetype/
+RUN rm ./Eurostile.ttf
+
 ENV QGIS_PATH=/opt/conda/envs/myenv/share/qgis
 ENV DISPLAY=host.docker.internal:0.0
 
