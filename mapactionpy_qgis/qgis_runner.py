@@ -15,9 +15,6 @@ import ctypes
 import qgis
 import re
 from pickle import Pickler
-#print(os.environ["PATH"])
-#print(qgis._path)
-#print(qgis._lib)
 
 
 
@@ -56,7 +53,7 @@ from qgis.PyQt.QtCore import (
 )
 
 import psutil
-
+from pdf2image import convert_from_path
 
 logging.basicConfig(
     level=logging.INFO,
@@ -80,8 +77,7 @@ class QGisRunner(BaseRunnerPlugin):
     def __init__(self,
                  hum_event):
         super(QGisRunner, self).__init__(hum_event)
-        dump_loaded_dlls()
-        QgsApplication.setPrefixPath(os.environ["QGIS_PATH"], True) # Todo add to requirements <installation envirenement variable>
+        QgsApplication.setPrefixPath(os.environ["QGIS_PATH"], True)
         self.qgs = QgsApplication([], False)
         # load providers
         self.qgs.initQgis()
@@ -91,10 +87,11 @@ class QGisRunner(BaseRunnerPlugin):
         self.maxx = 0
         self.maxy = 0
         self.chef = None
+        self.cmf.map_templates = os.path.join(self.cmf.map_templates,"323_qgis")
 
     def load_print_layout(self,project,template):
         principal_layout = QgsPrintLayout(project)
-        layout_name = os.path.split(template)[1].replace(".qpt","")
+        layout_name = re.findall("^\w+_\d+(.\d+)*_(.*)$",os.path.split(template)[1].replace(".qpt",""))[0][-1]
         logging.info(f"using layout name {layout_name}")
         principal_layout.setName(layout_name)
         logging.info(f"laout pages default {len(principal_layout.pageCollection().pages())}")
@@ -132,7 +129,7 @@ class QGisRunner(BaseRunnerPlugin):
         qgs_project.write(projectFilePath)
         self.chef = MapChef(qgs_project, self.cmf, self.hum_event)
         self.chef.cook(recipe)
-        # Output the Map Generation report alongside the MXD
+       
         final_recipe_file = recipe.map_project_path.replace(".qgs", ".json")
         with open(final_recipe_file, 'w') as outfile:
             outfile.write(str(recipe))
@@ -143,9 +140,9 @@ class QGisRunner(BaseRunnerPlugin):
         return '.qpt'
 
     def get_lyr_render_extension(self):
-        return '.lyr' #to xml??
+        return '.lyr' 
     
-    # Todo this a new function imported frpm arcgisPro repo SHould we Port it to Qgis ?? 
+    
     def _get_largest_map_frame(self,layout_item_maps):
         """
         This returns the dataframe occupying the largest area on the page.
@@ -157,7 +154,7 @@ class QGisRunner(BaseRunnerPlugin):
         @return: a single DataFrame object from the list.
         @raises ValueError: if there are two DataFrames in the list, which have identical `width`, `height` and `name`.
         """
-        # df, area, width, name
+      
         full_details = [{
             'df': df,
             'area': df.df.extent().heigth()*df.extent().width(),
@@ -173,23 +170,7 @@ class QGisRunner(BaseRunnerPlugin):
                 return sub_list[0]['df']
 
             # reduce the list of possible data frames for the next iteration
-            full_details = sub_list    
-
-   #def _get_all_templates_by_regex(self, recipe):
-   #    logging.info(f"getting all possible templates from loaded qgis project ")
-   #    project = QgsProject.instance()
-   #    project_path = r"C:\Users\BLAIT\Desktop\occamplabs\prepared-country-data\2021_common_RDS_files\3_Mapping\32_Map_Templates\qgis-3.4_all_templates_english_and_spanish.qgz"
-   #    
-
-   #    if(project.read(project_path)):
-   #        lmg = project.layoutManager()
-   #        logging.info(f"all loaded layouts <{[lyt.name() for lyt in lmg.printLayouts()]}>")
-   #        logging.info(f"template regex {recipe.template}")
-   #        layouts = set(filter(lambda lyt:re.search(recipe.template, lyt.name()),lmg.printLayouts()))
-   #        return layouts
-   #    else :
-   #        logging.info(f"couldn't open project file <{project_path}>")
-   #        return None 
+            full_details = sub_list   
 
     
 
@@ -241,31 +222,8 @@ class QGisRunner(BaseRunnerPlugin):
             logging.info('Calculated aspect ratio= {} for template={}'.format(aspect_ratio, template))
         # project.write(target_project_path) we can use this to create the project file for specified product  
         return results
- 
+   
     def haveDataSourcesChanged(self, previousReportFile):
-        # previousReportFile = '{}-v{}_{}.json'.format(
-        #     recipe.mapnumber,
-        #     str((version_num-1)).zfill(2),
-        #     output_mxd_base
-        # )
-        # generationRequired = True
-        # if (os.path.exists(os.path.join(output_dir, previousReportFile))):
-        #     generationRequired = self.haveDataSourcesChanged(os.path.join(output_dir, previousReportFile))
-
-        # returnValue = False
-        # with open(previousReportFile, 'r') as myfile:
-        #     data = myfile.read()
-        #     # parse file
-        #     obj = json.loads(data)
-        #     for result in obj['results']:
-        #         dataFile = os.path.join(self.event.path, (result['dataSource'].strip('/')))
-        #         previousHash = result.get('hash', "")
-        #         ds = DataSource(dataFile)
-        #         latestHash = ds.calculate_checksum()
-        #         if (latestHash != previousHash):
-        #             returnValue = True
-        #             break
-        # return returnValue
         return True
 
     def _do_export(self, recipe):
@@ -273,8 +231,7 @@ class QGisRunner(BaseRunnerPlugin):
         Does the actual work of exporting of the PDF, Jpeg and thumbnail files.
         """
         pass
-        arc_mxd = None ###arcpy.mapping.MapDocument(recipe.map_project_path)
-
+        arc_mxd = None
         # PDF export
         pdf_path = self.export_pdf(recipe, arc_mxd)
         recipe.zip_file_contents.append(pdf_path)
@@ -336,104 +293,32 @@ class QGisRunner(BaseRunnerPlugin):
         queryColumn = recipe_with_atlas.atlas.column_name
 
         lyr_index = recipe_frame.layers.index(recipe_lyr)
-        ###arc_df = arcpy.mapping.ListDataFrames(arc_mxd, recipe_frame.name)[0]
-        ###arc_lyr = arcpy.mapping.ListLayers(arc_mxd, None, arc_df)[lyr_index]
-
-        # TODO: asmith 2020/03/03
-        #
-        # Presumably `regions` here means admin1 boundaries or some other internal
-        # administrative devision? Replace with a more generic name.
-
-        # For each layer and column name, export a regional map
+  
         regions = list()
-        # UpdateCursor requires that the queryColumn must be passed as a list or tuple
-        ###with arcpy.da.UpdateCursor(arc_lyr.dataSource, [queryColumn]) as cursor:
-        ###    for row in cursor:
-        ###        regions.append(row[0])
-
-        # This loop simulates the behaviour of Data Driven Pages. This is because of the
-        # limitations in the arcpy API for maniplulating DDPs.
+     
         for region in regions:
             query = "\"" + queryColumn + "\" = \'" + region + "\'"
-            ###arcpy.SelectLayerByAttribute_management(arc_lyr, "NEW_SELECTION", query)
+            
 
-            # Set the extent mapframe to the selected area
-            ###arc_df.extent = arc_lyr.getSelectedExtent()
+            
 
-            # # Create a polygon using the bounding box
-            # bounds = arcpy.Array()
-            # bounds.add(arc_df.extent.lowerLeft)
-            # bounds.add(arc_df.extent.lowerRight)
-            # bounds.add(arc_df.extent.upperRight)
-            # bounds.add(arc_df.extent.upperLeft)
-            # # ensure the polygon is closed
-            # bounds.add(arc_df.extent.lowerLeft)
-            # # Create the polygon object
-            # polygon = arcpy.Polygon(bounds, arc_df.extent.spatialReference)
-
-            # bounds.removeAll()
-
-            # # Export the extent to a shapefile
-            # shapeFileName = "extent_" + slugify(unicode(region)).replace('-', '')
-            # shpFile = shapeFileName + ".shp"
-
-            # if arcpy.Exists(os.path.join(export_dir, shpFile)):
-            #     arcpy.Delete_management(os.path.join(export_dir, shpFile))
-            # arcpy.CopyFeatures_management(polygon, os.path.join(export_dir, shpFile))
-
-            # # For the 'extent' layer...
-            # locationMapDataFrameName = "Location map"
-            # locationMapDataFrame = arcpy.mapping.ListDataFrames(arc_mxd, locationMapDataFrameName)[0]
-            # extentLayerName = "locationmap-s0-py-extent"
-            # extentLayer = arcpy.mapping.ListLayers(arc_mxd, extentLayerName, locationMapDataFrame)[0]
-
-            # # Update the layer
-            # extentLayer.replaceDataSource(export_dir, 'SHAPEFILE_WORKSPACE', shapeFileName)
-            # arcpy.RefreshActiveView()
-
-            # # In Main map, zoom to the selected region
-            # dataFrameName = "Main map"
-            # df = arcpy.mapping.ListDataFrames(arc_mxd, dataFrameName)[0]
-            # arcpy.SelectLayerByAttribute_management(arc_lyr, "NEW_SELECTION", query)
-            # df.extent = arc_lyr.getSelectedExtent()
-
-            ###for elm in arcpy.mapping.ListLayoutElements(arc_mxd, "TEXT_ELEMENT"):
-            ###    if elm.name == "title":
-            ###        elm.text = recipe_with_atlas.category + " map of " + self.hum_event.country_name +\
-            ###            '\n' +\
-            ###            "<CLR red = '255'>Sheet - " + region + "</CLR>"
-            ###    if elm.name == "map_no":
-            ###        elm.text = recipe_with_atlas.mapnumber + "_Sheet_" + region.replace(' ', '_')
-
-            # Clear selection, otherwise the selected feature is highlighted in the exported map
-            ###arcpy.SelectLayerByAttribute_management(arc_lyr, "CLEAR_SELECTION")
-            # Export to PDF
-            ###pdfFileName = recipe_with_atlas.core_file_name + "-" + \
-            ###    slugify(unicode(region)) + "-" + str(self.hum_event.default_pdf_res_dpi) + "dpi.pdf"
-            ###pdfFileLocation = os.path.join(export_dir, pdfFileName)
-            ###recipe_with_atlas.zip_file_contents.append(pdfFileLocation)
+            
+           
 
             logging.info('About to export atlas page for region; {}.'.format(region))
-            ###arcpy.mapping.ExportToPDF(arc_mxd, pdfFileLocation, resolution=int(self.hum_event.default_pdf_res_dpi))
+           
             logging.info('Completed exporting atlas page for for region; {}.'.format(region))
 
-            # if arcpy.Exists(os.path.join(export_dir, shpFile)):
-            #     arcpy.Delete_management(os.path.join(export_dir, shpFile))
+
 
     def export_jpeg(self, recipe, arc_mxd):
         # JPEG
-        pass
         jpeg_fname = recipe.core_file_name+"-"+str(self.hum_event.default_jpeg_res_dpi) + "dpi.jpg"
         jpeg_fpath = os.path.join(recipe.export_path, jpeg_fname)
         recipe.export_metadata["jpgfilename"] = jpeg_fname
-        qgs_project = QgsProject().instance()
-        lManager = qgs_project.layoutManager()        
-        layout = lManager.layoutByName(recipe.template_path)
-        exporter = QgsLayoutExporter(layout)
-        exportSettings = QgsLayoutExporter.ImageExportSettings()
-        logging.info(f"layout export dpi param setted -exporting to pdf {jpeg_fpath} .")
-        ###arcpy.mapping.ExportToJPEG(arc_mxd, jpeg_fpath)
-        exporter.exportToImage(jpeg_fpath,exportSettings)
+        pdf_fname = recipe.core_file_name+"-"+str(self.hum_event.default_pdf_res_dpi) + "dpi.pdf"
+        pdf_fpath = os.path.join(recipe.export_path, pdf_fname)
+        convert_from_path(pdf_fpath, 300)[0].save(jpeg_fpath, 'JPEG')
         jpeg_fsize = os.path.getsize(jpeg_fpath)
         recipe.export_metadata["jpgfilesize"] = jpeg_fsize
         return jpeg_fpath
@@ -441,7 +326,6 @@ class QGisRunner(BaseRunnerPlugin):
     def export_pdf(self, recipe, arc_mxd):
         import traceback
 
-        # recipe.core_file_name, recipe.export_path, arc_mxd, recipe.export_metadata
 
         # PDF
         try :
@@ -455,27 +339,15 @@ class QGisRunner(BaseRunnerPlugin):
             logging.info(f"laout pages before export {len(layout.pageCollection().pages())}")
             
             
-            main_map = get_layout_Item(recipe.principal_map_frame,os.path.basename(recipe.template_path).replace(".qpt",""))
+            main_map = get_layout_Item(recipe.principal_map_frame,re.findall("^\w+_\d+(.\d+)*_(.*)$",os.path.split(recipe.template_path)[1].replace(".qpt",""))[0][-1])
 
             logging.info(f" mapLayer to render {[lyr.name() for lyr in main_map.layersToRender()]}")
             layers = main_map.layers()#layerTreeRoot().findLayers()
             logging.info(f"loaded main map <{main_map.displayName()}> contains layers {[lyr.name() for lyr in main_map.layers()]}")
-            #use new mapSettings instance
-            #rect.scale(1.0)
-            # logging.info(f"ms.fullextent after scale {rect.toString()}")
-            # ms.setExtent(rect)
             exportSettings = QgsLayoutExporter.PdfExportSettings()
-            logging.info(f"export settings : is geopdf {exportSettings.writeGeoPdf}")
-
-            logging.info(f"mainMap after {main_map.extent()}")
-            logging.info(f" mapLayer to render 2 {[lyr.name() for lyr in main_map.layersToRender()]}")
             #map_settings = main_map.mapSettings(rect, includeLayerSettings = False) 
             exporter = QgsLayoutExporter(layout)
             logging.info(f"layout exporter created ")                  
-            #logging.info(f"{exportSettings.dpi()} -metadata {exportSettings.exportMetadata()} flags {exportSettings.flags()}")
-            #from pickle import Pickler
-            #with open(os.path.join(os.getcwd(),"lyrs.dt"),"wb")as f :
-            #    Pickler(f).dump([lyr.name() for lyr in main_map.layers()])
             qgs_project.write()
             logging.info(f"layout export dpi param setted -exporting to pdf {pdf_fpath}")
             #mod br
@@ -489,34 +361,25 @@ class QGisRunner(BaseRunnerPlugin):
         except Exception: 
             logging.info(f"booooooooooooooooooooooooom {traceback.format_exc()}")
 
-        ###arcpy.mapping.ExportToPDF(arc_mxd, pdf_fpath, resolution=int(self.hum_event.default_pdf_res_dpi))
         
         return pdf_fpath
 
     def export_png_thumbnail(self, recipe, arc_mxd):
-        pass
         # PNG Thumbnail.  Need to create a larger image first.
         # If this isn't done, the thumbnail is pixelated amd doesn't look good
         tmp_fname = "tmp-thumbnail.png"
         tmp_fpath = os.path.join(recipe.export_path, tmp_fname)
-        qgs_project = QgsProject().instance()
-        lManager = qgs_project.layoutManager()        
-        layout = lManager.layoutByName(recipe.template_path)
-        exporter = QgsLayoutExporter(layout)
-        exporter.exportToImage(tmp_fpath, QgsLayoutExporter.ImageExportSettings())
-        pdf_fsize = os.path.getsize(tmp_fpath)
-        ###arcpy.mapping.ExportToPNG(arc_mxd, tmp_fpath)
-
+        pdf_fname = recipe.core_file_name+"-"+str(self.hum_event.default_pdf_res_dpi) + "dpi.pdf"
+        pdf_fpath = os.path.join(recipe.export_path, pdf_fname)
+        convert_from_path(pdf_fpath, 300)[0].save(tmp_fpath, 'PNG')
         png_fname = "thumbnail.png"
         png_fpath = os.path.join(recipe.export_path, png_fname)
-
         # Resize the thumbnail
         fd_img = open(tmp_fpath, 'r+b')
         img = Image.open(fd_img)
         img = resizeimage.resize('thumbnail', img, [140, 99])
         img.save(png_fpath, img.format)
         fd_img.close()
-
         # Remove the temporary larger thumbnail
         os.remove(tmp_fpath)
         return png_fpath
