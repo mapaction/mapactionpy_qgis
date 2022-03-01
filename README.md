@@ -38,3 +38,14 @@ python -m pip install mapactionpy_qgis
 # Development
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
+
+
+# Install QGIS Runner on Windows using Docker
+
+* Please download and install Docker.
+* Please Download and install [VcXsrv Windows X Server](https://sourceforge.net/projects/vcxsrv/)
+* Download `Dockerfile` and `environment.yml` files.
+* Navigate to the folder containing the dockerfile and build the Docker image using the following command `docker build -t qgisrunner . --no-cache`.
+* Before running the qgisrunner command please launch VcXsrv Windows X Server with the default options.
+* You can run the runner with the command below, please replace the `CMF_PATH` by the path of CMF:
+`docker run -it -v CMF_PATH:/cmf qgisrunner  conda run --no-capture-output -n myenv mapchef maps --build "/cmf/honduras/event_description.json" --map-number "MA9999"`
