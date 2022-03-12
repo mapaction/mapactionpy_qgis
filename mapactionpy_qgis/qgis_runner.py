@@ -77,7 +77,7 @@ class QGisRunner(BaseRunnerPlugin):
     def __init__(self,
                  hum_event):
         super(QGisRunner, self).__init__(hum_event)
-        QgsApplication.setPrefixPath(os.environ["QGIS_PATH"], True)
+        QgsApplication.setPrefixPath(os.environ["QGIS_PATH"], True) 
         self.qgs = QgsApplication([], False)
         # load providers
         self.qgs.initQgis()
@@ -129,7 +129,7 @@ class QGisRunner(BaseRunnerPlugin):
         qgs_project.write(projectFilePath)
         self.chef = MapChef(qgs_project, self.cmf, self.hum_event)
         self.chef.cook(recipe)
-       
+
         final_recipe_file = recipe.map_project_path.replace(".qgs", ".json")
         with open(final_recipe_file, 'w') as outfile:
             outfile.write(str(recipe))
@@ -140,9 +140,9 @@ class QGisRunner(BaseRunnerPlugin):
         return '.qpt'
 
     def get_lyr_render_extension(self):
-        return '.lyr' 
+        return '.lyr'
     
-    
+   
     def _get_largest_map_frame(self,layout_item_maps):
         """
         This returns the dataframe occupying the largest area on the page.
@@ -154,7 +154,7 @@ class QGisRunner(BaseRunnerPlugin):
         @return: a single DataFrame object from the list.
         @raises ValueError: if there are two DataFrames in the list, which have identical `width`, `height` and `name`.
         """
-      
+
         full_details = [{
             'df': df,
             'area': df.df.extent().heigth()*df.extent().width(),
@@ -170,9 +170,9 @@ class QGisRunner(BaseRunnerPlugin):
                 return sub_list[0]['df']
 
             # reduce the list of possible data frames for the next iteration
-            full_details = sub_list   
+            full_details = sub_list    
 
-    
+ 
 
     def get_aspect_ratios_of_templates(self, possible_templates, recipe):
         """
@@ -222,7 +222,7 @@ class QGisRunner(BaseRunnerPlugin):
             logging.info('Calculated aspect ratio= {} for template={}'.format(aspect_ratio, template))
         # project.write(target_project_path) we can use this to create the project file for specified product  
         return results
-   
+
     def haveDataSourcesChanged(self, previousReportFile):
         return True
 
@@ -231,7 +231,7 @@ class QGisRunner(BaseRunnerPlugin):
         Does the actual work of exporting of the PDF, Jpeg and thumbnail files.
         """
         pass
-        arc_mxd = None
+        arc_mxd = None 
         # PDF export
         pdf_path = self.export_pdf(recipe, arc_mxd)
         recipe.zip_file_contents.append(pdf_path)
@@ -278,7 +278,56 @@ class QGisRunner(BaseRunnerPlugin):
         recipe.export_metadata["datum"] = get_map_spatial_ref(arc_mxd, recipe)
         return recipe
 
-    def _export_atlas(self, recipe_with_atlas, arc_mxd, export_dir):
+    def _export_atlas(self, recipe_with_atlas, qgs_project, export_dir):
+        """
+        Exports each individual page for recipes which contain an atlas definition
+        """
+        logging.info("exporting map using atlas")
+        if not recipe_with_atlas.atlas:
+            raise ValueError('Cannot export atlas. The specified recipe does not contain an atlas definition')
+        recipe_frame = recipe_with_atlas.get_frame(recipe_with_atlas.atlas.map_frame)
+        recipe_lyr = recipe_frame.get_layer(recipe_with_atlas.atlas.layer_name)
+        queryColumn = recipe_with_atlas.atlas.column_name
+        atlas_lyr_name = recipe_lyr.name
+        qgs_project = QgsProject().instance()
+        lManager = qgs_project.layoutManager()        
+        layout  = lManager.printLayouts().pop()
+        logging.info(f"getting atlas layer <{atlas_lyr_name}>")
+        map_frame =  get_layout_Item(recipe_frame.name,re.findall("^\w+_\d+(.\d+)*_(.*)$",os.path.split(recipe_with_atlas.template_path)[1].replace(".qpt",""))[0][-1])
+        atlas_lyr = qgs_project.mapLayersByName(atlas_lyr_name)[0]  #[l for l in map_frame.layers() if l.name() == atlas_lyr_name][0]
+
+        if(atlas_lyr):
+            
+            atlas_lyr.selectAll()
+            regions = set(map(lambda f:f.attribute(queryColumn), atlas_lyr.getSelectedFeatures()))
+            atlas_lyr.removeSelection()
+           
+            for region in regions:
+                query = "\"" + queryColumn + "\" = \'" + region + "\'"
+                atlas_lyr.selectByExpression(query)
+                selection_extent = atlas_lyr.boundingBoxOfSelected()
+                map_frame.setExtent(selection_extent)
+                map_frame.zoomToExtent(selection_extent)
+                sub_product_title = recipe_with_atlas.category + " map of " +'\n' +\
+                    "<CLR red = '255'>Sheet - " + region + "</CLR>"
+                map_no =  recipe_with_atlas.mapnumber + "_Sheet_" + region.replace(' ', '_')
+                get_layout_Item("title").setText(sub_product_title)
+                get_layout_Item("map_no").setText(map_no)
+                atlas_lyr.removeSelection()
+                pdfFileName = recipe_with_atlas.core_file_name + "-" + \
+                    slugify(region) + "-" + str(self.hum_event.default_pdf_res_dpi) + "dpi.pdf"
+                pdfFileLocation = os.path.join(export_dir, pdfFileName)
+                recipe_with_atlas.zip_file_contents.append(pdfFileLocation)
+                logging.info('About to export atlas page for region; {}.'.format(region))
+                exportSettings = QgsLayoutExporter.PdfExportSettings()
+                exportSettings.dpi = double(self.hum_event.default_pdf_res_dpi)
+                exporter = QgsLayoutExporter(layout)
+                exporter.exportToPdf(pdfFileLocation,exportSettings)
+                # arc_layout.exportToPDF(pdfFileLocation, resolution=int(self.hum_event.default_pdf_res_dpi))
+                logging.info('Completed exporting atlas page for for region; {}.'.format(region))
+
+
+    def _export_atlas_old(self, recipe_with_atlas, arc_mxd, export_dir):
         """
         Exports each individual page for recipes which contain an atlas definition
         """
@@ -293,20 +342,20 @@ class QGisRunner(BaseRunnerPlugin):
         queryColumn = recipe_with_atlas.atlas.column_name
 
         lyr_index = recipe_frame.layers.index(recipe_lyr)
-  
+
         regions = list()
-     
+
         for region in regions:
             query = "\"" + queryColumn + "\" = \'" + region + "\'"
-            
 
-            
 
-            
-           
+
+
+
+
 
             logging.info('About to export atlas page for region; {}.'.format(region))
-           
+            
             logging.info('Completed exporting atlas page for for region; {}.'.format(region))
 
 

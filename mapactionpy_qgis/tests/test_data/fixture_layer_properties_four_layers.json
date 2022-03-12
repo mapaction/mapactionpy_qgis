@@ -1,0 +1,76 @@
+{
+	"layerProperties": [
+		{
+			"MapFrame": "Main map",
+			"name": "mainmap_stle_stl_pt_s0_allmaps",
+			"reg_exp": "^[a-z]{3}_stle_ste_pt_(.*?)_(.*?)_([phm][phm])(.*?).shp$",
+			"definition_query": "fclass IN ('national_capital', 'city', 'capital', 'town')",
+			"display": true,
+			"schema_definition": "null-schema.yml",
+			"add_to_legend": true,
+			"label_classes": [{
+					"class_name": "National Capital",
+					"expression": "[name]",
+					"sql_query": "(\"fclass\" = 'national_capital')",
+					"show_class_labels": true
+				},
+				{
+					"class_name": "Admin 1 Capital",
+					"expression": "[name]",
+					"sql_query": "(\"fclass\" = 'town')",
+					"show_class_labels": true
+				}
+			]
+		},
+		{
+			"MapFrame": "Location map",
+			"name": "locationmap_stle_stl_pt_s0_locationmaps",
+			"reg_exp": "^[a-z]{3}_stle_ste_pt_(.*?)_(.*?)_([phm][phm])(.*?).shp$",
+			"definition_query": "fclass IN ('national_capital', 'capital')",
+			"display": true,
+			"schema_definition": "null-schema.yml",
+			"add_to_legend": true,
+			"label_classes": [{
+					"class_name": "National Capital",
+					"expression": "[name]",
+					"sql_query": "(\"fclass\" = 'national_capital')",
+					"show_class_labels": true
+				}
+			]
+		},
+		{
+			"MapFrame": "Main map",
+			"name": "mainmap_tran_por_pt_s0_allmaps",
+			"reg_exp": "^[a-z]{3}_tran_sea_pt_(.*?)_(.*?)_([phm][phm])_(.*?).shp$",
+			"definition_query": "",
+			"display": true,
+			"schema_definition": "null-schema.yml",
+			"add_to_legend": true,
+			"label_classes": [
+
+			]
+		},
+		{
+			"MapFrame": "Main map",
+			"name": "mainmap-s0-py-surroundingcountries",
+			"reg_exp": "aoi_admn_ad0_py_(.*?)_(.*?)_([phm][phm])(.*?).shp$",
+			"definition_query": "",
+			"display": true,
+			"schema_definition": "null-schema.yml",
+			"add_to_legend": false,
+			"label_classes": [{
+					"class_name": "This",
+					"expression": "[NAME_0]",
+					"sql_query": "(\"NAME_0\" = '{COUNTRY_NAME}')",
+					"show_class_labels": false
+				},
+				{
+					"class_name": "Other",
+					"expression": "[NAME_0]",
+					"sql_query": "(\"NAME_0\" <> '{COUNTRY_NAME}')",
+					"show_class_labels": true
+				}
+			]
+		}
+	]
+}

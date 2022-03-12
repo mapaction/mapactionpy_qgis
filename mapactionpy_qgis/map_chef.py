@@ -10,34 +10,12 @@ from qgis.core import (QgsProject ,
     QgsMapLayerType,
     QgsVectorLayer,
     QgsRasterLayer,
-    QgsApplication,
-    QgsGeometry,
     QgsMapSettings,
-    QgsReadWriteContext,
-    QgsPrintLayout,
     QgsMapSettings, 
-    QgsMapLayer,
-    QgsMapRendererParallelJob,
-    QgsLayoutItemLabel,
-    QgsLayoutItemLegend,
-    QgsLayoutItemMap,
-    QgsLayoutItemPolygon,
-    QgsLayoutItemScaleBar,
-    QgsLayoutExporter,
-    QgsLayoutItem,
-    QgsLayoutPoint,
-    QgsLayoutSize,
-    QgsUnitTypes,
     QgsCoordinateReferenceSystem,
     QgsProject,
-    QgsRectangle,
-    QgsFillSymbol)
+    QgsRectangle)
 from qgis.PyQt.QtXml import QDomDocument
-from qgis.PyQt.QtCore import (
-    QPointF,
-    QRectF,
-    QSize
-)
 
 
 
@@ -60,7 +38,7 @@ ESRI_DATASET_TYPES = [
 
 
 def get_layout_Item(item_id,layout_name =None):
-    if(re.match("^\w+_\d+(.\d+)*_(.*)$",layout_name)):
+    if(layout_name and re.match("^\w+_\d+(.\d+)*_(.*)$",layout_name)):
         layout_name = re.findall("^\w+_\d+(.\d+)*_(.*)$",layout_name)[0][-1]
 
     lManager = QgsProject.instance().layoutManager()
@@ -166,7 +144,7 @@ class MapChef:
         #self.qgs_project.save()
 
     def cook(self, recipe):
-
+    
         self.disableLayers()
         self.removeLayers()
         self.template_name = os.path.basename(recipe.template_path).replace(".qpt","")
@@ -234,6 +212,7 @@ class MapChef:
     def showLegendEntries(self): # layer inclusion in the legent may be controlled by setting the autoUpdateMode to True on the legend object and seting the addToLegend flag during layers addition the project object 
 
         return
+
         
 
 
@@ -241,7 +220,7 @@ class MapChef:
         pass
 
 
-    def resizeScaleBar(self): 
+    def resizeScaleBar(self):
         scale_bar = get_layout_Item("scale",self.template_name)
         scale_bar.applyDataDefinedSize() 
         scale_bar.update()
@@ -274,7 +253,7 @@ class MapChef:
     from pickle import Pickler,Unpickler              
     missing_data_layers = []
 
-    def addLayer(self, recipe_lyr, recipe_frame):
+    def addLayer(self, recipe_lyr, recipe_frame): 
         logging.info(f"adding layer <{recipe_lyr.data_source_path}>")   
         try:
 
@@ -287,11 +266,11 @@ class MapChef:
             return None
         logging.info("passed layer source check ")
         target_layer_type = self.get_dataset_type_from_path(os.path.realpath(recipe_lyr.data_source_path))
-        mapLayer_toAdd = QgsVectorLayer(recipe_lyr.data_source_path,recipe_lyr.data_name,"ogr") if(target_layer_type == QgsMapLayerType.VectorLayer) \
-                            else QgsRasterLayer(recipe_lyr.data_source_path,recipe_lyr.data_name,"ogr")
+        mapLayer_toAdd = QgsVectorLayer(recipe_lyr.data_source_path,recipe_lyr.name,"ogr") if(target_layer_type == QgsMapLayerType.VectorLayer) \
+                            else QgsRasterLayer(recipe_lyr.data_source_path,recipe_lyr.name,"ogr")
         logging.info("vector layer object created")
 
-        try:      
+        try:  
             self.apply_label_classes(mapLayer_toAdd, recipe_lyr)
             logging.info(f"adding layer with file")
             self.addLayerWithFile(mapLayer_toAdd, recipe_lyr, recipe_frame)
@@ -374,7 +353,7 @@ class MapChef:
         try:
             qgs_lyr_to_add.dataProvider().setDataSourceUri(r_path)
             layoutItemMap = get_layout_Item(recipe_frame.name,self.template_name)
-            self.qgs_project.addMapLayer(qgs_lyr_to_add)
+            self.qgs_project.addMapLayer(qgs_lyr_to_add) 
             if(recipe_lyr.visible):
                 map_layers_set = layoutItemMap.layers()
                 map_layers_set = map_layers_set if(map_layers_set) else []
