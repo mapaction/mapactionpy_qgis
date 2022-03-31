@@ -20,32 +20,19 @@ MapAction has access to [SLYR](https://north-road.com/slyr) (which has been gene
 * Vector tiles (planned)
 * ArcGIS Pro (planned)
 
-# Installation
+# Install QGIS Runner on Windows using Docker
 
-It is necessary to explicitly install both the QGIS plugin and the controller (See [bug #7](https://github.com/mapaction/mapactionpy_qgis/issues/7)). You _must_ identify the appropriate python environment for your QGIS installation. To confirm 
-
-```
-# This command must print out the module name `qgis.core` and return without error
-<path/to/your/qgis/python> -c 'import qgis.core; print(qgis.core.__name__)'
-```
-
-These two commands are required to install the packages:
-```
-python -m pip install mapactionpy_controller
-python -m pip install mapactionpy_qgis
-```
+* Please download and install Docker.
+* Please Download and install [VcXsrv Windows X Server](https://sourceforge.net/projects/vcxsrv/)
+* Download `Dockerfile` and `environment.yml` files :  
+  `Dockerfile` https://github.com/mapaction/mapactionpy_qgis/blob/87df836f58a7631235c816d001c3628c5d712291/Dockerfile  
+  `environment.yml` https://github.com/mapaction/mapactionpy_qgis/blob/87df836f58a7631235c816d001c3628c5d712291/environment.yml
+* Navigate to the folder containing the dockerfile and build the Docker image using the following command `docker build -t qgisrunner . --no-cache`.
+* Before running the Mapchef command please launch VcXsrv Windows X Server with the default options.
 
 # Development
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 
-# Install QGIS Runner on Windows using Docker
 
-* Please download and install Docker.
-* Please Download and install [VcXsrv Windows X Server](https://sourceforge.net/projects/vcxsrv/)
-* Download `Dockerfile` and `environment.yml` files.
-* Navigate to the folder containing the dockerfile and build the Docker image using the following command `docker build -t qgisrunner . --no-cache`.
-* Before running the qgisrunner command please launch VcXsrv Windows X Server with the default options.
-* You can run the runner with the command below, please replace the `CMF_PATH` by the path of CMF:
-`docker run -it -v CMF_PATH:/cmf qgisrunner  conda run --no-capture-output -n myenv mapchef maps --build "/cmf/honduras/event_description.json" --map-number "MA9999"`
