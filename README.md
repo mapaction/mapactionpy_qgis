@@ -24,10 +24,8 @@ MapAction has access to [SLYR](https://north-road.com/slyr) (which has been gene
 
 * Please download and install Docker.
 * Please Download and install [VcXsrv Windows X Server](https://sourceforge.net/projects/vcxsrv/)
-* Download `Dockerfile` and `environment.yml` files :  
-  `Dockerfile` https://github.com/mapaction/mapactionpy_qgis/blob/87df836f58a7631235c816d001c3628c5d712291/Dockerfile  
-  `environment.yml` https://github.com/mapaction/mapactionpy_qgis/blob/87df836f58a7631235c816d001c3628c5d712291/environment.yml
-* Navigate to the folder containing the dockerfile and build the Docker image using the following command `docker build -t qgisrunner . --no-cache`.
+* Clone the current repository.
+* Navigate to the current repository folder and build the Docker image using the following command `docker build -t qgisrunner . --no-cache`.
 * Before running the Mapchef command please launch VcXsrv Windows X Server with the default options.
 
 # Development
